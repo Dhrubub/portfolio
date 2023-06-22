@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../style';
 
 import dhruv from '../assets/dhruv.png';
+import resume from '../assets/Dhruv_Resume.pdf';
 
 const Hero = () => {
 	return (
@@ -10,7 +11,7 @@ const Hero = () => {
 			className={`flex sm:flex-row flex-col ${styles.paddingY}`}
 		>
 			<div
-				className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:pl-16 h-screen sm:h-auto px-6 md:w-1/2 w-full`}
+				className={`flex-[1.25] ${styles.flexStart} flex-col xl:px-0 sm:pl-16 h-screen sm:h-auto px-6`}
 			>
 				<div className='flex flex-col justify-between sm:items-start sm:text-left items-center text-center w-full'>
 					<h1
@@ -37,10 +38,26 @@ const Hero = () => {
 						A Software Engineer
 					</h1>
 				</div>
+				<div
+					className={`${styles.flexCenter} sm:justify-start w-full mt-5`}
+				>
+					<a
+						href='#contact'
+						className='bg-secondary text-primary px-2 py-1 mr-2 rounded-lg'
+					>
+						Contact
+					</a>
+					<button
+						className='bg-secondary text-primary px-2 py-1 ml-2 rounded-lg'
+						onClick={() => window.open(resume, '_blank')}
+					>
+						Resume
+					</button>
+				</div>
 			</div>
 
 			<div
-				className={`flex-1 ${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6 md:w-1/2 w-full`}
+				className={`flex-1 ${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6`}
 			>
 				<div className='flex flex-col justify-between items-center w-full'>
 					<img
@@ -59,7 +76,7 @@ const Hero = () => {
 						About me
 					</h1>
 					<p
-						className={`text-secondary text-[16px] max-w-[470px] text-justify`}
+						className={`text-secondary md:text-[16px] text-[14px] max-w-[470px] text-justify`}
 					>
 						Currently pursuing my Master of Professional Engineering
 						(Software) at The Univeristy of Western Australia, I am

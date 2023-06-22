@@ -9,7 +9,7 @@
 
 	--primary: #eeeeee;
 	--secondary: #537188;
-	--tertiary: #537188;
+	--tertiary: #cbb279;
 	--dimTertiary: #e1d4bb;
 
 	font-family: Poppins, sans-serif;
@@ -24,4 +24,36 @@
 
 * {
 	scroll-behavior: smooth;
+}
+
+.bg-gradient {
+	/* background: hsla(206, 24%, 43%, 1);
+
+	background: linear-gradient(
+		300deg,
+		hsla(206, 24%, 43%, 1) 0%,
+		hsla(199, 12%, 46%, 1) 23%,
+		hsla(184, 6%, 49%, 1) 50%,
+		hsla(42, 44%, 64%, 1) 100%
+	);
+
+	background: -moz-linear-gradient(
+		300deg,
+		hsla(206, 24%, 43%, 1) 0%,
+		hsla(199, 12%, 46%, 1) 23%,
+		hsla(184, 6%, 49%, 1) 50%,
+		hsla(42, 44%, 64%, 1) 100%
+	);
+
+	background: -webkit-linear-gradient(
+		300deg,
+		hsla(206, 24%, 43%, 1) 0%,
+		hsla(199, 12%, 46%, 1) 23%,
+		hsla(184, 6%, 49%, 1) 50%,
+		hsla(42, 44%, 64%, 1) 100%
+	);
+
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#537188", endColorstr="#687C85", GradientType=1 ); */
+
+	background: var(--secondary) !important;
 }

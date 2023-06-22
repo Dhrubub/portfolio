@@ -27,11 +27,12 @@ export const navLinks = [
 ];
 
 type NavbarProps = {
+	isDarkMode: boolean;
 	toggleDarkMode: () => void;
 };
 
-const Navbar = ({ toggleDarkMode }: NavbarProps) => {
-	const [darkMode, setDarkMode] = useState(false);
+const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
+	const [darkMode, setDarkMode] = useState(isDarkMode);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 	const sidebarContainerRef = useRef<HTMLDivElement>(null);
@@ -53,6 +54,10 @@ const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 		};
 	}, []);
 
+	useEffect(() => {
+		setDarkMode(isDarkMode);
+	}, [isDarkMode]);
+
 	const handleToggleDarkMode = () => {
 		setDarkMode((prev) => !prev);
 		toggleDarkMode();
@@ -60,9 +65,7 @@ const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 
 	return (
 		<nav className='w-full flex py-4 min-h-[64px] justify-center items-center navbar'>
-			<span className='text-secondary text-[16px]'>
-				<a href=''>Dhruv Jobanputra</a>
-			</span>
+			<span className='text-secondary text-[16px]'>Dhruv Jobanputra</span>
 			<ul className='list-none sm:flex hidden justify-end items-center flex-1'>
 				{navLinks.map((nav) => (
 					<li
