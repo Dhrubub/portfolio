@@ -32,17 +32,17 @@ type NavbarProps = {
 
 const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 	const [darkMode, setDarkMode] = useState(false);
-	const [sidebar, setSidebar] = useState(false);
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-	const sidebarRef = useRef<HTMLDivElement>(null);
+	const sidebarContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: { target: any }) => {
 			if (
-				sidebarRef.current &&
-				!sidebarRef.current.contains(event.target)
+				sidebarContainerRef.current &&
+				!sidebarContainerRef.current.contains(event.target)
 			) {
-				setSidebar(false);
+				setIsSidebarOpen(false);
 			}
 		};
 
@@ -80,13 +80,13 @@ const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 				</button>
 			</ul>
 
-			{sidebar && (
+			{isSidebarOpen && (
 				<div className='fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 z-10'></div>
 			)}
 
 			<div
 				className='sm:hidden flex flex-1 justify-end items-center z-[11]'
-				ref={sidebarRef}
+				ref={sidebarContainerRef}
 			>
 				<FontAwesomeIcon
 					icon={darkMode ? faMoon : faSun}
@@ -94,25 +94,23 @@ const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 					onClick={handleToggleDarkMode}
 				/>
 				<FontAwesomeIcon
-					icon={sidebar ? faTimes : faBars}
+					icon={isSidebarOpen ? faTimes : faBars}
 					className={`w-[20px] h-[20px] text-secondary cursor-pointer`}
-					onClick={() => setSidebar((prev) => !prev)}
+					onClick={() => setIsSidebarOpen((prev) => !prev)}
 				/>
 
 				<div
 					className={`${
-						sidebar ? 'flex' : 'slide-right-out'
-					} p-6 bg-primary absolute top-0 right-0 min-w-[180px] h-full sidebar`}
+						isSidebarOpen
+							? 'flex translate-x-0'
+							: 'translate-x-full '
+					} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out duration-500`}
 				>
 					<ul className='list-none flex flex-col justify-start items-start flex-1'>
-						{navLinks.map((nav, index) => (
+						{navLinks.map((nav) => (
 							<li
 								key={nav.id}
-								className={`font-poppins font-normal cursor-pointer text-[16px] text-secondary mb-4 ${
-									index === navLinks.length - 1
-										? 'mb-0'
-										: 'mb-4'
-								}`}
+								className={`cursor-pointer text-[16px] text-secondary mb-4`}
 							>
 								<a href={`#${nav.id}`}>{nav.title}</a>
 							</li>

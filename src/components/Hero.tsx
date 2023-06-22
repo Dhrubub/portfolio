@@ -12,7 +12,7 @@ const Hero = () => {
 			<div
 				className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:pl-16 h-screen sm:h-auto px-6 md:w-1/2 w-full`}
 			>
-				<div className='flex flex-col justify-between sm:items-start items-center w-full'>
+				<div className='flex flex-col justify-between sm:items-start sm:text-left items-center text-center w-full'>
 					<h1
 						className='flex-1 font-semibold text-secondary 
                         md:text-[32px]
@@ -24,8 +24,7 @@ const Hero = () => {
 						className='flex-1 font-semibold text-secondary 
                         lg:text-[50px]
                         md:text-[46px]
-                        sm:text-[36px]
-                        text-[42px]'
+                        text-[36px]'
 					>
 						I'm Dhruv,
 					</h1>
@@ -33,8 +32,7 @@ const Hero = () => {
 						className='flex-1 font-semibold text-secondary 
                         lg:text-[50px]
                         md:text-[46px]
-                        sm:text-[36px]
-                        text-[42px]'
+                        text-[36px]'
 					>
 						A Software Engineer
 					</h1>
