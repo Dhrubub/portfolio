@@ -59,23 +59,23 @@ const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 	};
 
 	return (
-		<nav className='w-full flex py-4 justify-center items-center navbar'>
-			<span className='text-secondary text-[16px]'>Dhruv Jobanputra</span>
+		<nav className='w-full flex py-4 min-h-[64px] justify-center items-center navbar'>
+			<span className='text-secondary text-[16px]'>
+				<a href=''>Dhruv Jobanputra</a>
+			</span>
 			<ul className='list-none sm:flex hidden justify-end items-center flex-1'>
-				{navLinks.map((nav, index) => (
+				{navLinks.map((nav) => (
 					<li
 						key={nav.id}
-						className={`font-poppins font-normal cursor-pointer text-[16px] text-secondary ${
-							index === navLinks.length - 1 ? 'mr-0' : 'mr-10'
-						}`}
+						className={`font-poppins font-normal cursor-pointer text-[16px] text-secondary mr-10`}
 					>
 						<a href={`#${nav.id}`}>{nav.title}</a>
 					</li>
 				))}
-				<button className='pl-8' onClick={handleToggleDarkMode}>
+				<button onClick={handleToggleDarkMode}>
 					<FontAwesomeIcon
 						icon={darkMode ? faMoon : faSun}
-						className={`w-[20px] h-[20px] text-secondary mt-1`}
+						className={`w-[20px] h-[20px] text-secondary mt-1 cursor-pointer`}
 					/>
 				</button>
 			</ul>
@@ -90,12 +90,12 @@ const Navbar = ({ toggleDarkMode }: NavbarProps) => {
 			>
 				<FontAwesomeIcon
 					icon={darkMode ? faMoon : faSun}
-					className={`w-[20px] h-[20px] text-secondary mr-6`}
+					className={`w-[20px] h-[20px] text-secondary mr-6 cursor-pointer`}
 					onClick={handleToggleDarkMode}
 				/>
 				<FontAwesomeIcon
 					icon={sidebar ? faTimes : faBars}
-					className={`w-[20px] h-[20px] text-secondary`}
+					className={`w-[20px] h-[20px] text-secondary cursor-pointer`}
 					onClick={() => setSidebar((prev) => !prev)}
 				/>
 
