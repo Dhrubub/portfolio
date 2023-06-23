@@ -16,9 +16,9 @@
 }
 
 [data-theme='dark'] {
-	--primary: #354259;
+	--primary: #383e56;
 	--secondary: #eeeeee;
-	--tertiary: #ff8551;
+	--tertiary: #f1935c;
 	--dimTertiary: #dddddd;
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './style';
-import { Navbar, Hero } from './components';
+import { Navbar, Hero, Footer } from './components';
 import { Helmet } from 'react-helmet';
 import darkLogo from './assets/dark-logo.png';
 import lightLogo from './assets/light-logo.png';
@@ -58,11 +58,21 @@ const App = () => {
 					/>
 				</div>
 			</div>
-			<div className='flex sm:hidden w-full justify-between items-center md:flex-row flex-col pt-6 border-t-[1px] border-t-secondary opacity-50'></div>
+
+			<div
+				className='flex sm:hidden w-full justify-between items-center 
+				md:flex-row flex-col pt-6 border-t-[1px] border-t-secondary opacity-50'
+			></div>
 
 			<div className={`bg-primary ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Hero />
+				</div>
+			</div>
+
+			<div className={`bg-primary ${styles.flexStart}`}>
+				<div className={`${styles.boxWidth}`}>
+					<Footer />
 				</div>
 			</div>
 		</div>
