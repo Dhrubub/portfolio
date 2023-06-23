@@ -9,7 +9,7 @@
 
 	--primary: #eeeeee;
 	--secondary: #537188;
-	--tertiary: #cbb279;
+	--tertiary: #ea906c;
 	--dimTertiary: #e1d4bb;
 
 	font-family: Poppins, sans-serif;
@@ -18,7 +18,7 @@
 [data-theme='dark'] {
 	--primary: #354259;
 	--secondary: #eeeeee;
-	--tertiary: #eeeeee;
+	--tertiary: #ff8551;
 	--dimTertiary: #dddddd;
 }
 

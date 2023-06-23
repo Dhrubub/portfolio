@@ -58,6 +58,7 @@ const App = () => {
 					/>
 				</div>
 			</div>
+			<div className='flex sm:hidden w-full justify-between items-center md:flex-row flex-col pt-6 border-t-[1px] border-t-secondary opacity-50'></div>
 
 			<div className={`bg-primary ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>

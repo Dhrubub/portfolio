@@ -43,12 +43,12 @@ const Hero = () => {
 				>
 					<a
 						href='#contact'
-						className='bg-secondary text-primary px-2 py-1 mr-2 rounded-lg'
+						className='bg-tertiary text-primary dark:text-secondary px-2 py-1 mr-2 rounded-lg'
 					>
 						Contact
 					</a>
 					<button
-						className='bg-secondary text-primary px-2 py-1 ml-2 rounded-lg'
+						className='bg-tertiary text-primary dark:text-secondary px-2 py-1 ml-2 rounded-lg'
 						onClick={() => window.open(resume, '_blank')}
 					>
 						Resume
@@ -68,7 +68,7 @@ const Hero = () => {
                         rounded-full'
 					/>
 					<h1
-						className='flex-1 font-normal text-secondary 
+						className='flex-1 font-normal text-tertiary 
 						text-[24px]
                         mt-5
                         '
