@@ -41,7 +41,7 @@ const App = () => {
 	};
 
 	return (
-		<div className='bg-primary w-full overflow-hidden'>
+		<div className='bg-primary w-full overflow-hidden scrollbar'>
 			<Helmet>
 				<link
 					rel='icon'
@@ -71,7 +71,7 @@ const App = () => {
 			</div>
 
 			<div className={`bg-primary ${styles.flexStart}`}>
-				<div className={`${styles.boxWidth}`}>
+				<div className={`w-full`}>
 					<Footer />
 				</div>
 			</div>

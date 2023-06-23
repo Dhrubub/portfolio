@@ -22,23 +22,26 @@ const Footer = () => {
 		},
 	];
 	return (
-		<div className='py-6'>
-			<div className='w-full flex justify-between items-between ss:justify-evenly px-6 md:flex-row flex-row p-3 '>
-				<p className='text-[12px] text-secondary'>
-					Copyright Ⓒ Dhruv Jobanputra 2023
+		<div id='contact' className='py-6 card-shadow'>
+			<div className='w-full flex justify-center items-center px-6 flex-col p-3 '>
+				<p className='text-[18px] sm:text-[24px] text-tertiary mb-4'>
+					Contact me
 				</p>
 				<div className='flex flex-row'>
 					{FooterLinks.map((link, index) => (
 						<FontAwesomeIcon
 							key={link.name}
 							icon={link.icon}
-							className={`w-[21px] h-[21px] object-contain cursor-pointer
-                            text-secondary
+							className={`w-[20px] h-[20px] sm:w-[28px] sm:h-[28px] object-contain cursor-pointer
+                            text-secondary mb-4
 							${index !== FooterLinks.length - 1 ? 'mr-6' : 'mr-0'}`}
 							onClick={() => window.open(link.link, '_blank')}
 						/>
 					))}
 				</div>
+				<p className='text-[12px] sm:text-[14px] text-secondary'>
+					Website built using ReactJS and TailwindCSS
+				</p>
 			</div>
 		</div>
 	);
