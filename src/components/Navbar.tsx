@@ -107,7 +107,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 						isSidebarOpen
 							? 'flex translate-x-0'
 							: 'translate-x-full '
-					} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out duration-500`}
+					} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out duration-500 shadow-inner`}
 				>
 					<ul className='list-none flex flex-col justify-start items-start flex-1'>
 						{navLinks.map((nav) => (
@@ -115,7 +115,14 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 								key={nav.id}
 								className={`cursor-pointer text-[16px] text-secondary mb-4`}
 							>
-								<a href={`#${nav.id}`}>{nav.title}</a>
+								<a
+									href={`#${nav.id}`}
+									onClick={() =>
+										setIsSidebarOpen((prev) => !prev)
+									}
+								>
+									{nav.title}
+								</a>
 							</li>
 						))}
 					</ul>

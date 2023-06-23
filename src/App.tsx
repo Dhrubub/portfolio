@@ -50,8 +50,10 @@ const App = () => {
 				/>
 			</Helmet>
 
-			<div className={`${styles.paddingX} ${styles.flexCenter}`}>
-				<div className='w-full'>
+			<div
+				className={`${styles.flexCenter} relative shadow sm:shadow-none`}
+			>
+				<div className={`w-full ${styles.paddingX}`}>
 					<Navbar
 						isDarkMode={darkMode}
 						toggleDarkMode={() => toggleDarkMode()}
@@ -59,10 +61,10 @@ const App = () => {
 				</div>
 			</div>
 
-			<div
+			{/* <div
 				className='flex sm:hidden w-full justify-between items-center 
 				md:flex-row flex-col pt-6 border-t-[1px] border-t-secondary opacity-50'
-			></div>
+			></div> */}
 
 			<div className={`bg-primary ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
