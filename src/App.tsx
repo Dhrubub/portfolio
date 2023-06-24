@@ -53,7 +53,7 @@ const App = () => {
 			<div
 				className={`${styles.flexCenter} relative shadow sm:shadow-none`}
 			>
-				<div className={`w-full ${styles.paddingX}`}>
+				<div className={`${styles.boxWidth} ${styles.paddingX}`}>
 					<Navbar
 						isDarkMode={darkMode}
 						toggleDarkMode={() => toggleDarkMode()}
@@ -63,7 +63,7 @@ const App = () => {
 
 			<div
 				className='flex sm:hidden w-full justify-between items-center 
-				md:flex-row flex-col pt-6 border-t-[1px] border-t-secondary opacity-50'
+				md:flex-row flex-col xs:pt-6 border-t-[1px] border-t-secondary opacity-50'
 			></div>
 
 			<div className={`bg-primary ${styles.flexStart}`}>
