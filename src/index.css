@@ -12,6 +12,8 @@
 	--tertiary: #ea906c;
 	--dimTertiary: #e1d4bb;
 
+	--footer: #e6e6e6;
+
 	font-family: Poppins, sans-serif;
 }
 
@@ -20,6 +22,8 @@
 	--secondary: #eeeeee;
 	--tertiary: #f1935c;
 	--dimTertiary: #dddddd;
+
+	--footer: #353b52;
 }
 
 * {
@@ -61,8 +65,4 @@
 .shadow {
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
 		rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-}
-
-.navbar-shadow {
-	box-shadow: rgba(99, 99, 99, 1) 5px 5px 8px 5px;
 }

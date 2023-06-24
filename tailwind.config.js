@@ -10,9 +10,15 @@ module.exports = {
 				secondary: 'var(--secondary)',
 				tertiary: 'var(--tertiary)',
 				dimTertiary: 'var(--dimTertiary)',
+				footer: 'var(--footer)',
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
+			},
+			borderOpacity: {
+				10: '0.1',
+				20: '0.2',
+				50: '0.5',
 			},
 		},
 		screens: {

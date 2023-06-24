@@ -22,8 +22,8 @@ const Footer = () => {
 		},
 	];
 	return (
-		<div id='contact' className='py-6 shadow'>
-			<div className='w-full flex justify-center items-center px-6 flex-col p-3 '>
+		<div id='contact' className='shadow py-6'>
+			<div className='w-full flex justify-center items-center px-6  flex-col '>
 				<p className='text-[18px] sm:text-[24px] text-tertiary mb-4'>
 					Contact me
 				</p>
