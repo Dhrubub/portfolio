@@ -53,7 +53,7 @@ const App = () => {
 			<div
 				className={`${styles.flexCenter} relative shadow sm:shadow-none`}
 			>
-				<div className={`${styles.boxWidth} ${styles.paddingX}`}>
+				<div className={`${styles.boxWidth} sm:px-16 xl:pl-0 px-6`}>
 					<Navbar
 						isDarkMode={darkMode}
 						toggleDarkMode={() => toggleDarkMode()}

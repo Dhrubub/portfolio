@@ -8,7 +8,7 @@ const Hero = () => {
 	return (
 		<section
 			id='home'
-			className={`flex sm:flex-row flex-col ${styles.paddingY} sm:h-[100vh]`}
+			className={`flex sm:flex-row flex-col m-auto sm:pb-16 sm:mt-[-32px] py-6 sm:h-[100vh]`}
 		>
 			<div
 				className={`h-[50vh] xs:h-auto my-[25%] ss:m-auto sm:flex-[1.3] lg:flex-1 ${styles.flexStart} flex-col xl:px-0 sm:pl-16 px-6`}
@@ -58,7 +58,7 @@ const Hero = () => {
 
 			<div
 				id='about'
-				className={`flex-1 ${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6 h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto`}
+				className={`${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6 h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto`}
 			>
 				<div className='flex flex-col justify-between items-center w-full'>
 					<img
