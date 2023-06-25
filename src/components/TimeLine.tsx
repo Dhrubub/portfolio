@@ -50,9 +50,11 @@ function TimeLine() {
 				getPercentage(item, topThreshold)
 			);
 
-			const cards = timelineDotItems.map(
-				(item) => getPercentage(item, 0.95 * viewportHeight) > 0
-			);
+			const cards = timelineDotItems.map((item, index) => {
+				const show = getPercentage(item, 1 * viewportHeight) > 0;
+				if (show) setEventCount(Math.max(index + 1, 6));
+				return show;
+			});
 
 			setDotsPercent(dots);
 			setLinesPercent(lines);
@@ -89,7 +91,7 @@ function TimeLine() {
 					className={`duration-500 ${
 						showCard[index]
 							? 'translate-y-0 opacity-100'
-							: 'translate-y-[50%] opacity-0'
+							: 'translate-y-[60%] opacity-0'
 					}`}
 				>
 					<TimeLineCard

@@ -31,7 +31,7 @@ const TimeLineCard = ({
 	return (
 		<TimelineItem>
 			<TimelineOppositeContent>
-				<span className='text-secondary text-[8px] xs:text-[10px] sm:text-[14px] items-end min-w-[300px]'>
+				<span className='text-secondary text-[9px] xs:text-[10px] sm:text-[14px] items-end min-w-[300px]'>
 					{date}
 				</span>
 			</TimelineOppositeContent>
