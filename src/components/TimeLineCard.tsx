@@ -31,7 +31,7 @@ const TimeLineCard = ({
 	return (
 		<TimelineItem>
 			<TimelineOppositeContent>
-				<span className='text-secondary text-[12px] sm:text-[14px]'>
+				<span className='text-secondary text-[8px] xs:text-[10px] sm:text-[14px]'>
 					{date}
 				</span>
 			</TimelineOppositeContent>
@@ -40,7 +40,11 @@ const TimeLineCard = ({
 					sx={{
 						border: 'none',
 						padding: '6px',
-						background: `linear-gradient(180deg, var(--tertiary) ${dotPercent}%, var(--secondary) 0%)`,
+						background:
+							dotPercent > 0
+								? 'var(--tertiary)'
+								: 'var(--secondary)',
+						// background: `linear-gradient(180deg, var(--tertiary) ${dotPercent}%, var(--secondary) 0%)`,
 						boxShadow: 'none',
 					}}
 				/>
@@ -64,13 +68,14 @@ const TimeLineCard = ({
 					</span>
 				</div>
 
-				<ul className='list-none'>
+				<ul className='list-none text-justify'>
 					{description.map((item, index) => (
 						<li
 							key={index}
-							className='justify-start text-secondary max-w-[470px] sm:max-w-[640px] text-[12px] sm:text-[14px]'
+							className='flex flex-row justify-start text-secondary max-w-[470px] sm:max-w-[640px] text-[12px] sm:text-[14px]'
 						>
-							&minus;&nbsp;{item}
+							<span className='mr-2'>&minus;</span>
+							<span>{item}</span>
 						</li>
 					))}
 				</ul>

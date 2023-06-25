@@ -1,6 +1,14 @@
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
-let TimeLineElements = [
+interface TimeLineElementProps {
+	title: string;
+	position: string;
+	description: string[];
+	date: string;
+	skills: string[];
+}
+
+const TimeLineElements: TimeLineElementProps[] = [
 	{
 		title: 'Visagio',
 		position: 'Software Engineering Consultant',
@@ -25,6 +33,28 @@ let TimeLineElements = [
 			'Implemented new APIs and fetched data using C#, SQL, and .NET.',
 		],
 		date: 'Nov 2022 - Present',
+		skills: [],
+	},
+	{
+		title: 'Soar.Earth',
+		position: 'Junior Software Engineer',
+		description: [
+			'Enhanced the UI of the Soar.Earth platform through React, Redux, Typescript, HTML, and CSS, contributing to a 10x increase in user registrations to 50,000',
+			'Performed automated testing using the React Testing Library and Cypress',
+			'Implemented new features, fixed bugs, and conducted QA testing under Agile practices',
+			'Upgraded legacy code and fixed bugs using Java and Android Studio',
+		],
+		date: 'Aug 2020 - July 2022',
+		skills: [],
+	},
+	{
+		title: 'The University of Western Australia',
+		position: 'Lab Facilitator',
+		description: [
+			'Tutored and assisted a class of 15 university students in CITS1001 Software Engineering with Java.',
+			'Evaluated projects and assessments, offered constructive feedback, and monitored exams.',
+		],
+		date: 'March 2022 - June 2022',
 		skills: [],
 	},
 ];
