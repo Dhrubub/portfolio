@@ -78,7 +78,7 @@ const App = () => {
 			</Helmet>
 
 			<div
-				className={`fixed bottom-[20px] right-[20px] w-[40px] h-[40px] bg-gray-900
+				className={`z-[10] fixed bottom-[20px] right-[20px] w-[40px] h-[40px] bg-gray-900
 				 text-white flex justify-center items-center cursor-pointer
 				  opacity-0 transition-opacity duration-300 ${
 						shouldShowScrollToTop ? 'opacity-100' : ''
