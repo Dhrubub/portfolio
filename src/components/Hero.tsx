@@ -57,12 +57,10 @@ const Hero = () => {
 			</div>
 
 			<div
-				className={`${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6 h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto`}
+				id='about'
+				className={`${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6`}
 			>
-				<div
-					id='about'
-					className='flex flex-col justify-between items-center w-full'
-				>
+				<div className='flex-1 xs:flex-[0] flex flex-col justify-between items-center w-full h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto'>
 					<img
 						src={dhruv}
 						alt='dhruv'
@@ -78,7 +76,7 @@ const Hero = () => {
 						About me
 					</h1>
 					<p
-						className={`text-secondary md:text-[16px] text-[14px] max-w-[470px] text-justify`}
+						className={`text-secondary md:text-[16px] text-[14px] md:max-w-[470px] max-w-[420px] text-justify`}
 					>
 						Currently pursuing my Master of Professional Engineering
 						(Software) at The Univeristy of Western Australia (UWA),

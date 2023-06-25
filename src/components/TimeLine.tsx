@@ -88,7 +88,7 @@ function TimeLine() {
 			{TimeLineElements.slice(0, eventCount).map((item, index) => (
 				<div
 					key={index}
-					className={`duration-500 ${
+					className={`duration-300 ${
 						showCard[index]
 							? 'translate-y-0 opacity-100'
 							: 'translate-y-[60%] opacity-0'
