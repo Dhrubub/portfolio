@@ -16,6 +16,7 @@ function TimeLine() {
 	const [dotsPercent, setDotsPercent] = React.useState([]);
 	const [linesPercent, setLinesPercent] = React.useState([]);
 	const [eventCount, setEventCount] = React.useState(6);
+	const [showCard, setShowCard] = React.useState([]);
 
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -49,8 +50,13 @@ function TimeLine() {
 				getPercentage(item, topThreshold)
 			);
 
+			const cards = timelineDotItems.map(
+				(item) => getPercentage(item, 1.05 * viewportHeight) > 0
+			);
+
 			setDotsPercent(dots);
 			setLinesPercent(lines);
+			setShowCard(cards);
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -78,19 +84,30 @@ function TimeLine() {
 			}}
 		>
 			{TimeLineElements.slice(0, eventCount).map((item, index) => (
-				<TimeLineCard
+				<div
 					key={index}
-					{...item}
-					index={index}
-					dotPercent={dotsPercent[index]}
-					linePercent={linesPercent[index]}
-				/>
+					className={`duration-300 ${
+						showCard[index]
+							? 'translate-y-0 opacity-100'
+							: 'translate-y-full opacity-0'
+					}`}
+				>
+					<TimeLineCard
+						{...item}
+						index={index}
+						dotPercent={dotsPercent[index]}
+						linePercent={linesPercent[index]}
+					/>
+				</div>
 			))}
 			{eventCount < TimeLineElements.length && (
 				<FontAwesomeIcon
 					icon={faCirclePlus}
 					className='text-[28px] mt-6 text-secondary cursor-pointer'
-					onClick={() => setEventCount((prev) => prev + 1)}
+					onClick={() => {
+						setEventCount((prev) => prev + 1);
+						setShowCard((prev) => [...prev, true]);
+					}}
 				/>
 			)}
 		</Timeline>
