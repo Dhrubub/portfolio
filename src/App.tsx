@@ -9,6 +9,9 @@ const App = () => {
 	const [darkMode, setDarkMode] = useState(
 		window.matchMedia('(prefers-color-scheme: dark)').matches
 	);
+	const [prevScrollPos, setPrevScrollPos] = useState(0);
+	const [isNavbarFixed, setIsNavbarFixed] = useState(false);
+	const [isScrolling, setIsScrolling] = useState(false);
 
 	useEffect(() => {
 		const htmlElement = document.documentElement;
@@ -36,6 +39,45 @@ const App = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollPos = window.pageYOffset;
+
+			setIsNavbarFixed(prevScrollPos > currentScrollPos);
+			setPrevScrollPos(currentScrollPos);
+			setIsScrolling(true);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, [prevScrollPos]);
+
+	useEffect(() => {
+		console.log(isScrolling);
+	}, [isScrolling]);
+
+	useEffect(() => {
+		let scrollTimeout = null;
+
+		const handleScrollTimeout = () => {
+			setIsScrolling(false);
+		};
+
+		if (isScrolling) {
+			clearTimeout(scrollTimeout);
+			scrollTimeout = setTimeout(handleScrollTimeout, 200); // Adjust the duration as needed
+		} else {
+			setIsNavbarFixed(false);
+		}
+
+		return () => {
+			clearTimeout(scrollTimeout);
+		};
+	});
+
 	const toggleDarkMode = () => {
 		setDarkMode((prev) => !prev);
 	};
@@ -50,21 +92,34 @@ const App = () => {
 				/>
 			</Helmet>
 
-			<div
-				className={`${styles.flexCenter} relative shadow sm:shadow-none`}
-			>
-				<div className={`${styles.boxWidth} ${styles.paddingX}`}>
+			<div className={`${styles.flexCenter} shadow sm:shadow-none`}>
+				<div
+					className={`w-full ${
+						isNavbarFixed ? 'fixed top-0 translate-y-0' : ''
+					} z-[15] duration-500 transition-transform ease-in-out`}
+				>
 					<Navbar
 						isDarkMode={darkMode}
 						toggleDarkMode={() => toggleDarkMode()}
 					/>
+					<div
+						className={`flex ${
+							isNavbarFixed ? '' : 'sm:hidden'
+						} w-full justify-between items-center 
+				md:flex-row flex-col xs:pt-6 border-t-[1px] border-t-secondary opacity-50`}
+					></div>
 				</div>
 			</div>
 
-			<div
-				className='flex sm:hidden w-full justify-between items-center 
-				md:flex-row flex-col xs:pt-6 border-t-[1px] border-t-secondary opacity-50'
-			></div>
+			{isNavbarFixed && (
+				<div className='w-screen'>
+					<div className='py-6' style={{ height: '64px' }} />
+					<div
+						className='flex w-full justify-between items-center 
+						md:flex-row flex-col xs:pt-6'
+					></div>
+				</div>
+			)}
 
 			<div className={`bg-primary ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>

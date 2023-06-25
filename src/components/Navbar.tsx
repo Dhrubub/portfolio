@@ -6,6 +6,7 @@ import {
 	faBars,
 	faTimes,
 } from '@fortawesome/free-solid-svg-icons';
+import styles from '../style';
 
 export const navLinks = [
 	{
@@ -64,7 +65,9 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 	};
 
 	return (
-		<nav className='w-full flex py-4 min-h-[64px] justify-center items-center navbar'>
+		<nav
+			className={`${styles.boxWidth} ${styles.paddingX} m-auto bg-primary w-full flex py-4 min-h-[64px] justify-center items-center navbar`}
+		>
 			<span className='text-secondary text-[16px]'>Dhruv Jobanputra</span>
 			<ul className='list-none sm:flex hidden justify-end items-center flex-1'>
 				{navLinks.map((nav) => (
@@ -84,11 +87,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 			</ul>
 
 			{isSidebarOpen && (
-				<div className='fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 z-10'></div>
+				<div className='fixed h-[10000px] w-[10000px] bg-black bg-opacity-50 z-[20]'></div>
 			)}
 
 			<div
-				className='sm:hidden flex flex-1 justify-end items-center z-[11]'
+				className='sm:hidden flex flex-1 justify-end items-center'
 				ref={sidebarContainerRef}
 			>
 				<FontAwesomeIcon
@@ -107,7 +110,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 						isSidebarOpen
 							? 'flex translate-x-0'
 							: 'translate-x-full '
-					} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out duration-500 shadow-inner`}
+					} z-[30] p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out duration-500 shadow-inner`}
 				>
 					<ul className='list-none flex flex-col justify-start items-start flex-1'>
 						{navLinks.map((nav) => (
