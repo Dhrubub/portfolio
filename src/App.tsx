@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import styles from './style';
-import { Navbar, Hero, Experience, Footer } from './components';
+import {
+	Navbar,
+	Hero,
+	Experience,
+	Footer,
+	Projects,
+	Skills,
+} from './components';
 import { Helmet } from 'react-helmet';
 import darkLogo from './assets/dark-logo.png';
 import lightLogo from './assets/light-logo.png';
@@ -79,7 +86,7 @@ const App = () => {
 
 			<div
 				className={`z-[10] fixed bottom-[20px] right-[20px] w-[40px] h-[40px] bg-gray-900
-				 text-white flex justify-center items-center cursor-pointer
+				 text-white flex justify-center items-center cursor-pointer rounded-full
 				  opacity-0 transition-opacity duration-300 ${
 						shouldShowScrollToTop ? 'opacity-100' : ''
 					}`}
@@ -99,20 +106,14 @@ const App = () => {
 				</div>
 			</div>
 
-			<div
-				className='flex sm:hidden w-full justify-between items-center 
-				md:flex-row flex-col xs:pt-6 border-t-[1px] border-t-secondary opacity-50'
-			></div>
+			<div className='sm:hidden w-full xs:pt-6 border-t-[1px] border-t-secondary opacity-50'></div>
 
 			<div className={`bg-primary ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Hero />
-				</div>
-			</div>
-
-			<div className={`bg-primary ${styles.flexStart}`}>
-				<div className={`${styles.boxWidth}`}>
 					<Experience />
+					<Projects />
+					<Skills />
 				</div>
 			</div>
 

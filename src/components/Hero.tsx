@@ -69,7 +69,7 @@ const Hero = () => {
                         rounded-full'
 					/>
 					<h1
-						className='flex-1 sm:font-semibold text-tertiary 
+						className='flex-1 font-semibold text-tertiary 
 						text-[24px]
                         mt-5'
 					>
