@@ -4,6 +4,8 @@ import { Navbar, Hero, Experience, Footer } from './components';
 import { Helmet } from 'react-helmet';
 import darkLogo from './assets/dark-logo.png';
 import lightLogo from './assets/light-logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
 	const [darkMode, setDarkMode] = useState(
@@ -40,6 +42,31 @@ const App = () => {
 		setDarkMode((prev) => !prev);
 	};
 
+	const [shouldShowScrollToTop, setShouldShowScrollToTop] = useState(false);
+
+	const handleScroll = () => {
+		const scrollTop =
+			window.pageYOffset || document.documentElement.scrollTop;
+		const scrollThreshold = 200; // Adjust this value as needed
+
+		setShouldShowScrollToTop(scrollTop > scrollThreshold);
+	};
+
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	};
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
 		<div className='bg-primary w-full overflow-hidden scrollbar'>
 			<Helmet>
@@ -49,6 +76,17 @@ const App = () => {
 					href={darkMode ? darkLogo : lightLogo}
 				/>
 			</Helmet>
+
+			<div
+				className={`fixed bottom-[20px] right-[20px] w-[40px] h-[40px] bg-gray-900
+				 text-white flex justify-center items-center cursor-pointer
+				  opacity-0 transition-opacity duration-300 ${
+						shouldShowScrollToTop ? 'opacity-100' : ''
+					}`}
+				onClick={scrollToTop}
+			>
+				<FontAwesomeIcon icon={faArrowUp} />
+			</div>
 
 			<div
 				className={`${styles.flexCenter} relative shadow sm:shadow-none`}
