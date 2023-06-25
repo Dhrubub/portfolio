@@ -8,8 +8,8 @@ interface TimeLineElementProps {
 	skills: string[];
 }
 
-const TimeLineElements: TimeLineElementProps[] = [
-	{
+const exp = {
+	visagio: {
 		title: 'Visagio',
 		position: 'Software Engineering Consultant',
 		description: [
@@ -22,7 +22,7 @@ const TimeLineElements: TimeLineElementProps[] = [
 		date: 'May 2022 - March 2023',
 		skills: [],
 	},
-	{
+	research: {
 		title: 'The University of Western Australia',
 		position: 'Research Assistant',
 		description: [
@@ -32,7 +32,7 @@ const TimeLineElements: TimeLineElementProps[] = [
 		date: 'Nov 2022 - Present',
 		skills: [],
 	},
-	{
+	soar: {
 		title: 'Soar.Earth',
 		position: 'Junior Software Engineer',
 		description: [
@@ -44,7 +44,7 @@ const TimeLineElements: TimeLineElementProps[] = [
 		date: 'Aug 2020 - July 2022',
 		skills: [],
 	},
-	{
+	facilitator: {
 		title: 'The University of Western Australia',
 		position: 'Lab Facilitator',
 		description: [
@@ -54,6 +54,60 @@ const TimeLineElements: TimeLineElementProps[] = [
 		date: 'March 2022 - June 2022',
 		skills: [],
 	},
+	honours: {
+		title: 'The University of Western Australia',
+		position: 'Honours in Software Enginnering and Computer Science',
+		description: [
+			'First Class Honours',
+			'Thesis title: Using deep learning to assist in \
+			accurately diagnosing ear diseases from otoscopic images',
+		],
+		date: 'Feb 2022 - Nov 2022',
+		skills: [],
+	},
+	undergrad: {
+		title: 'The University of Western Australia',
+		position: 'Engineering Science and Computer Science',
+		description: ['WAM: 80.50%', 'GPA: 6.50 / 7'],
+		date: 'Feb 2019 - Nov 2021',
+		skills: [],
+	},
+	masters: {
+		title: 'The University of Western Australia',
+		position: 'Master of Professional Engineering (Software)',
+		description: [],
+		date: 'Feb 2023 - Present',
+		skills: [],
+	},
+	school: {
+		title: 'Willetton Senior High School',
+		position: 'High School',
+		description: ['ATAR: 99.40 (Top 0.6% in the state)'],
+		date: '2014 - 2018',
+		skills: [],
+	},
+	cfc_csf: {
+		title: 'Coders for Causes',
+		position: 'Volunteer Software Engineer',
+		description: [
+			'Working as a full stack developer for \
+		a project for the not-for-profit organisation Community Spirit Foundation',
+		],
+		date: 'June 2023 - Present',
+		skills: [],
+	},
+};
+
+const TimeLineElements: TimeLineElementProps[] = [
+	exp.masters,
+	exp.cfc_csf,
+	exp.research,
+	exp.visagio,
+	exp.honours,
+	exp.soar,
+	exp.facilitator,
+	exp.undergrad,
+	exp.school,
 ];
 
 export default TimeLineElements;

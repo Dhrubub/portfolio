@@ -31,7 +31,7 @@ const TimeLineCard = ({
 	return (
 		<TimelineItem>
 			<TimelineOppositeContent>
-				<span className='text-secondary text-[8px] xs:text-[10px] sm:text-[14px]'>
+				<span className='text-secondary text-[8px] xs:text-[10px] sm:text-[14px] items-end min-w-[300px]'>
 					{date}
 				</span>
 			</TimelineOppositeContent>
@@ -51,13 +51,15 @@ const TimeLineCard = ({
 
 				<TimelineConnector
 					sx={{
-						background: `linear-gradient(180deg, var(--tertiary) ${linePercent}%, var(--secondary) 0%)`,
+						background: `linear-gradient(180deg, var(--tertiary) ${
+							linePercent > 0 ? linePercent : 0
+						}%, var(--secondary) 0%)`,
 					}}
 				/>
 			</TimelineSeparator>
 			<TimelineContent className='!pt-1 sm:!pt-0'>
 				<div className='flex items-end'>
-					<span className='text-tertiary font-semibold sm:text-[24px] text-[18px]'>
+					<span className='text-tertiary font-semibold sm:text-[24px] text-[18px] max-w-[470px] sm:max-w-[640px]'>
 						{title}
 						<span className='mx-2 text-tertiary font-light sm:text-[22px] text-[16px] align-top'>
 							|
