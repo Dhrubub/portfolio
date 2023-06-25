@@ -7,6 +7,17 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
+interface TimeLineEventProps {
+	title: string;
+	position: string;
+	description: string[];
+	date: string;
+	skills: string[];
+	dotPercent: number;
+	linePercent: number;
+	index: number;
+}
+
 const TimeLineEvent = ({
 	title,
 	position,
@@ -16,7 +27,7 @@ const TimeLineEvent = ({
 	dotPercent,
 	linePercent,
 	index,
-}) => {
+}: TimeLineEventProps) => {
 	return (
 		<TimelineItem>
 			<TimelineOppositeContent>
