@@ -57,6 +57,7 @@ const Hero = () => {
 			</div>
 
 			<div
+				id='about'
 				className={`flex-1 ${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6 h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto`}
 			>
 				<div className='flex flex-col justify-between items-center w-full'>
@@ -68,7 +69,7 @@ const Hero = () => {
                         rounded-full'
 					/>
 					<h1
-						className='flex-1 font-normal text-tertiary 
+						className='flex-1 sm:font-semibold text-tertiary 
 						text-[24px]
                         mt-5'
 					>

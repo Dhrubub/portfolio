@@ -26,11 +26,8 @@ const TimeLineElements: TimeLineElementProps[] = [
 		title: 'The University of Western Australia',
 		position: 'Research Assistant',
 		description: [
-			'Developed features in a web tool using Angular and Typescript to streamline manual processes, resulting in a 15% increase in efficiency.',
-			'Designed a structure to improve code quality and reduce code size by 10%.',
-			'Led a project using Python and data visualization to streamline processes and achieve a 30% increase in efficiency.',
-			'Interacted with clients to provide solutions and promptly responded to feedback by making necessary changes.',
-			'Implemented new APIs and fetched data using C#, SQL, and .NET.',
+			'Created a deep learning model with Python and Keras to diagnose ear diseases from otoscopic images.',
+			'Utilized LaTeX to present experimental results in a thesis and submitted a literature review in a journal.',
 		],
 		date: 'Nov 2022 - Present',
 		skills: [],
