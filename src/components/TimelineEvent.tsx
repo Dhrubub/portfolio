@@ -9,7 +9,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 import TimeLineElements from './TimeLineElements';
 
-const TimelineEvent = ({
+const TimeLineEvent = ({
 	title,
 	position,
 	description,
@@ -36,32 +36,11 @@ const TimelineEvent = ({
 					}}
 				/>
 
-				{/* <FontAwesomeIcon
-							icon={event.icon}
-							style={{
-								border: 'none',
-								padding: '6px',
-								color: `linear-gradient(180deg, var(--tertiary) ${dotsPercent[index]}%, var(--secondary) 0%)`,
-							}}
-						/> */}
-				{/* {index < TimeLineElements.length - 1 && ( */}
 				<TimelineConnector
 					sx={{
 						background: `linear-gradient(180deg, var(--tertiary) ${linePercent}%, var(--secondary) 0%)`,
 					}}
 				/>
-				{/* // )} */}
-				{/* {index == tm.length - 1 && (
-							<TimelineDot
-								sx={{
-									border: 'none',
-									padding: '6px',
-									background: `linear-gradient(180deg, var(--tertiary) ${
-										dotsPercent[dotsPercent.length - 1]
-									}%, var(--secondary) 0%)`,
-								}}
-							/>
-						)} */}
 			</TimelineSeparator>
 			<TimelineContent className='!pt-1 sm:!pt-0'>
 				<div className='flex items-end'>
@@ -91,4 +70,4 @@ const TimelineEvent = ({
 	);
 };
 
-export default TimelineEvent;
+export default TimeLineEvent;

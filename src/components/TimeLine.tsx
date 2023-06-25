@@ -5,11 +5,13 @@ import TimelineOppositeContent, {
 	timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent';
 
-import TimeLineElements from './TimeLineElements';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGit, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
-import TimelineEvent from './TimelineEvent';
+
+import TimeLineElements from './TimeLineElements';
+import TimeLineEvent from './TimeLineEvent';
+
 function TimeLine() {
 	const [dotsPercent, setDotsPercent] = React.useState([]);
 	const [linesPercent, setLinesPercent] = React.useState([]);
@@ -75,7 +77,7 @@ function TimeLine() {
 			}}
 		>
 			{TimeLineElements.map((event, index) => (
-				<TimelineEvent
+				<TimeLineEvent
 					key={index}
 					{...event}
 					index={index}
