@@ -57,10 +57,12 @@ const Hero = () => {
 			</div>
 
 			<div
-				id='about'
 				className={`${styles.flexStart} flex-col sm:pr-16 sm:pt-0 pt-10 px-6 h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto`}
 			>
-				<div className='flex flex-col justify-between items-center w-full'>
+				<div
+					id='about'
+					className='flex flex-col justify-between items-center w-full'
+				>
 					<img
 						src={dhruv}
 						alt='dhruv'
