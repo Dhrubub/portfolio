@@ -7,8 +7,6 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
-import TimeLineElements from './TimeLineElements';
-
 const TimeLineEvent = ({
 	title,
 	position,

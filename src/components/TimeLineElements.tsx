@@ -1,6 +1,6 @@
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
-let timelineElements = [
+let TimeLineElements = [
 	{
 		title: 'Visagio',
 		position: 'Software Engineering Consultant',
@@ -29,4 +29,4 @@ let timelineElements = [
 	},
 ];
 
-export default timelineElements;
+export default TimeLineElements;
