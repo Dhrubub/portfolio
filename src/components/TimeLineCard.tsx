@@ -7,7 +7,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
-interface TimeLineEventProps {
+interface TimeLineCardProps {
 	title: string;
 	position: string;
 	description: string[];
@@ -18,7 +18,7 @@ interface TimeLineEventProps {
 	index: number;
 }
 
-const TimeLineEvent = ({
+const TimeLineCard = ({
 	title,
 	position,
 	description,
@@ -27,7 +27,7 @@ const TimeLineEvent = ({
 	dotPercent,
 	linePercent,
 	index,
-}: TimeLineEventProps) => {
+}: TimeLineCardProps) => {
 	return (
 		<TimelineItem>
 			<TimelineOppositeContent>
@@ -79,4 +79,4 @@ const TimeLineEvent = ({
 	);
 };
 
-export default TimeLineEvent;
+export default TimeLineCard;

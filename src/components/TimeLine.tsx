@@ -10,7 +10,7 @@ import { faGit, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 import TimeLineElements from './TimeLineElements';
-import TimeLineEvent from './TimeLineEvent';
+import TimeLineCard from './TimeLineCard';
 
 function TimeLine() {
 	const [dotsPercent, setDotsPercent] = React.useState([]);
@@ -76,10 +76,10 @@ function TimeLine() {
 				},
 			}}
 		>
-			{TimeLineElements.map((event, index) => (
-				<TimeLineEvent
+			{TimeLineElements.map((item, index) => (
+				<TimeLineCard
 					key={index}
-					{...event}
+					{...item}
 					index={index}
 					dotPercent={dotsPercent[index]}
 					linePercent={linesPercent[index]}
