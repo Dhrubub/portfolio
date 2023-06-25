@@ -79,13 +79,13 @@ const Hero = () => {
 						className={`text-secondary md:text-[16px] text-[14px] max-w-[470px] text-justify`}
 					>
 						Currently pursuing my Master of Professional Engineering
-						(Software) at The Univeristy of Western Australia, I am
-						driven by a pursuit of growth and knowledge. I approach
-						each day with a commitment to learning and strive to
-						give my best in every opportunity that comes my way.
-						Embrancing challenges and seeking new experiences, I aim
-						to continuously expand my skills and knowledge and
-						strive for excellence in every endeavour.
+						(Software) at The Univeristy of Western Australia (UWA),
+						I am driven by a pursuit of growth and knowledge. I
+						approach each day with a commitment to learning and
+						strive to give my best in every opportunity that comes
+						my way. Embrancing challenges and seeking new
+						experiences, I aim to continuously expand my skills and
+						knowledge and strive for excellence in every endeavour.
 					</p>
 				</div>
 			</div>

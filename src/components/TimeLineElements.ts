@@ -23,11 +23,11 @@ const exp = {
 		skills: [],
 	},
 	research: {
-		title: 'The University of Western Australia',
+		title: 'UWA',
 		position: 'Research Assistant',
 		description: [
 			'Created a deep learning model with Python and Keras to diagnose ear diseases from otoscopic images.',
-			'Utilized LaTeX to present experimental results in a thesis and submitted a literature review in a journal.',
+			'Utilised LaTeX to present experimental results in a thesis and submitted a literature review in a journal.',
 		],
 		date: 'Nov 2022 - Present',
 		skills: [],
@@ -45,7 +45,7 @@ const exp = {
 		skills: [],
 	},
 	facilitator: {
-		title: 'The University of Western Australia',
+		title: 'UWA',
 		position: 'Lab Facilitator',
 		description: [
 			'Tutored and assisted a class of 15 university students in CITS1001 Software Engineering with Java.',
@@ -55,7 +55,7 @@ const exp = {
 		skills: [],
 	},
 	honours: {
-		title: 'The University of Western Australia',
+		title: 'UWA',
 		position: 'Honours in Software Enginnering and Computer Science',
 		description: [
 			'First Class Honours',
@@ -66,16 +66,16 @@ const exp = {
 		skills: [],
 	},
 	undergrad: {
-		title: 'The University of Western Australia',
+		title: 'UWA',
 		position: 'Engineering Science and Computer Science',
 		description: ['WAM: 80.50%', 'GPA: 6.50 / 7'],
 		date: 'Feb 2019 - Nov 2021',
 		skills: [],
 	},
 	masters: {
-		title: 'The University of Western Australia',
+		title: 'UWA',
 		position: 'Master of Professional Engineering (Software)',
-		description: [],
+		description: ['Expected graduation end of 2024'],
 		date: 'Feb 2023 - Present',
 		skills: [],
 	},
