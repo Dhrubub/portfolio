@@ -84,7 +84,7 @@ const TimeLineCard = ({
 					}}
 				/>
 			</TimelineSeparator>
-			<TimelineContent className='!font-poppins !pt-1 sm:!pt-0 !px-[0px]'>
+			<TimelineContent className='!font-poppins !pt-[7px] sm:!pt-[1px] !px-[0px]'>
 				<div className='flex items-end'>
 					<span className='text-tertiary font-semibold sm:text-[24px] text-[18px] max-w-[470px] sm:max-w-[640px]'>
 						{title}
