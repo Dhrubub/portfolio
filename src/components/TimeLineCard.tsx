@@ -40,12 +40,12 @@ const TimeLineCard = ({
 }: TimeLineCardProps) => {
 	return (
 		<TimelineItem>
-			<TimelineOppositeContent>
-				<span className='text-secondary text-[9px] xs:text-[10px] sm:text-[14px] items-end min-w-[300px]'>
+			<TimelineOppositeContent className='!px-[0px]'>
+				<span className='font-poppins flex-1 text-secondary text-[9px] xs:text-[10px] sm:text-[14px] items-end min-w-[300px]'>
 					{date}
 				</span>
 			</TimelineOppositeContent>
-			<TimelineSeparator>
+			<TimelineSeparator className='px-[8px]'>
 				{icon ? (
 					<FontAwesomeIcon
 						title={`${
@@ -55,7 +55,7 @@ const TimeLineCard = ({
 								? 'Education'
 								: 'Volunteering'
 						}`}
-						className={`timeline-dot py-[12px] ${
+						className={`timeline-dot py-[12px] w-[20px] ${
 							dotPercent > 0 ? 'text-tertiary' : 'text-secondary'
 						}`}
 						icon={icon}
@@ -84,7 +84,7 @@ const TimeLineCard = ({
 					}}
 				/>
 			</TimelineSeparator>
-			<TimelineContent className='!pt-1 sm:!pt-0'>
+			<TimelineContent className='!font-poppins !pt-1 sm:!pt-0 !px-[0px]'>
 				<div className='flex items-end'>
 					<span className='text-tertiary font-semibold sm:text-[24px] text-[18px] max-w-[470px] sm:max-w-[640px]'>
 						{title}
