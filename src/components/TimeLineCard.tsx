@@ -6,6 +6,14 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
+	IconDefinition,
+	faBriefcase,
+	faGraduationCap,
+	faLaptopCode,
+} from '@fortawesome/free-solid-svg-icons';
 
 interface TimeLineCardProps {
 	title: string;
@@ -16,6 +24,7 @@ interface TimeLineCardProps {
 	dotPercent: number;
 	linePercent: number;
 	index: number;
+	icon?: IconDefinition;
 }
 
 const TimeLineCard = ({
@@ -27,6 +36,7 @@ const TimeLineCard = ({
 	dotPercent,
 	linePercent,
 	index,
+	icon,
 }: TimeLineCardProps) => {
 	return (
 		<TimelineItem>
@@ -36,18 +46,35 @@ const TimeLineCard = ({
 				</span>
 			</TimelineOppositeContent>
 			<TimelineSeparator>
-				<TimelineDot
-					sx={{
-						border: 'none',
-						padding: '6px',
-						background:
-							dotPercent > 0
-								? 'var(--tertiary)'
-								: 'var(--secondary)',
-						// background: `linear-gradient(180deg, var(--tertiary) ${dotPercent}%, var(--secondary) 0%)`,
-						boxShadow: 'none',
-					}}
-				/>
+				{icon ? (
+					<FontAwesomeIcon
+						title={`${
+							icon == faBriefcase
+								? 'Work'
+								: icon == faGraduationCap
+								? 'Education'
+								: 'Volunteering'
+						}`}
+						className={`timeline-dot py-[12px] ${
+							dotPercent > 0 ? 'text-tertiary' : 'text-secondary'
+						}`}
+						icon={icon}
+					/>
+				) : (
+					<TimelineDot
+						className='timeline-dot'
+						sx={{
+							border: 'none',
+							padding: '6px',
+							background:
+								dotPercent > 0
+									? 'var(--tertiary)'
+									: 'var(--secondary)',
+							// background: `linear-gradient(180deg, var(--tertiary) ${dotPercent}%, var(--secondary) 0%)`,
+							boxShadow: 'none',
+						}}
+					/>
+				)}
 
 				<TimelineConnector
 					sx={{

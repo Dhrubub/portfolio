@@ -21,7 +21,7 @@ function TimeLine() {
 	React.useEffect(() => {
 		const handleScroll = () => {
 			const timelineDotItems = Array.from(
-				document.querySelectorAll('.MuiTimelineDot-root')
+				document.querySelectorAll('.timeline-dot')
 			);
 			const timelineConnectorItems = Array.from(
 				document.querySelectorAll('.MuiTimelineConnector-root')

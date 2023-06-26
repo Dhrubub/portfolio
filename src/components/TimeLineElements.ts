@@ -1,4 +1,9 @@
-import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import {
+	IconDefinition,
+	faBriefcase,
+	faGraduationCap,
+	faLaptopCode,
+} from '@fortawesome/free-solid-svg-icons';
 
 interface TimeLineElementProps {
 	title: string;
@@ -6,6 +11,7 @@ interface TimeLineElementProps {
 	description: string[];
 	date: string;
 	skills: string[];
+	icon?: IconDefinition;
 }
 
 const exp = {
@@ -21,6 +27,7 @@ const exp = {
 		],
 		date: 'May 2022 - March 2023',
 		skills: [],
+		icon: faBriefcase,
 	},
 	research: {
 		title: 'UWA',
@@ -31,6 +38,7 @@ const exp = {
 		],
 		date: 'Nov 2022 - Present',
 		skills: [],
+		icon: faBriefcase,
 	},
 	soar: {
 		title: 'Soar.Earth',
@@ -43,6 +51,7 @@ const exp = {
 		],
 		date: 'Aug 2020 - July 2022',
 		skills: [],
+		icon: faBriefcase,
 	},
 	facilitator: {
 		title: 'UWA',
@@ -53,6 +62,7 @@ const exp = {
 		],
 		date: 'March 2022 - June 2022',
 		skills: [],
+		icon: faBriefcase,
 	},
 	honours: {
 		title: 'UWA',
@@ -64,6 +74,7 @@ const exp = {
 		],
 		date: 'Feb 2022 - Nov 2022',
 		skills: [],
+		icon: faGraduationCap,
 	},
 	undergrad: {
 		title: 'UWA',
@@ -71,6 +82,7 @@ const exp = {
 		description: ['WAM: 80.50%', 'GPA: 6.50 / 7'],
 		date: 'Feb 2019 - Nov 2021',
 		skills: [],
+		icon: faGraduationCap,
 	},
 	masters: {
 		title: 'UWA',
@@ -78,6 +90,7 @@ const exp = {
 		description: ['Expected graduation end of 2024'],
 		date: 'Feb 2023 - Present',
 		skills: [],
+		icon: faGraduationCap,
 	},
 	school: {
 		title: 'Willetton Senior High School',
@@ -85,6 +98,7 @@ const exp = {
 		description: ['ATAR: 99.40 (Top 0.6% in the state)'],
 		date: '2014 - 2018',
 		skills: [],
+		icon: faGraduationCap,
 	},
 	cfc_csf: {
 		title: 'Coders for Causes',
@@ -95,6 +109,7 @@ const exp = {
 		],
 		date: 'June 2023 - Present',
 		skills: [],
+		icon: faLaptopCode,
 	},
 };
 
