@@ -76,7 +76,7 @@ const Hero = () => {
 						About me
 					</h1>
 					<p
-						className={`text-secondary md:text-[16px] text-[14px] md:max-w-[470px] max-w-[420px] text-justify`}
+						className={`text-secondary md:text-[16px] text-[14px] md:max-w-[450px] max-w-[380px] text-justify`}
 					>
 						Currently pursuing my Master of Professional Engineering
 						(Software) at The Univeristy of Western Australia (UWA),

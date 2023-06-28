@@ -66,7 +66,7 @@ const exp = {
 	},
 	honours: {
 		title: 'UWA',
-		position: 'Honours in Software Enginnering and Computer Science',
+		position: 'Honours in Software Engineering and Computer Science',
 		description: [
 			'First Class Honours',
 			'Thesis title: Using deep learning to assist in \
