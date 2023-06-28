@@ -16,7 +16,7 @@ const WIPBanner = () => {
 				show ? 'opacity-80' : 'opacity-0'
 			}`}
 					>
-						<div className='my-auto mx-4 text-[16px]'>
+						<div className='my-auto mx-4 text-[14px]'>
 							This site is still a work in progress!
 						</div>
 						<FontAwesomeIcon
