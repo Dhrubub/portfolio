@@ -13,7 +13,6 @@ import django from '../assets/logos/django.svg';
 import dark_django from '../assets/logos/dark/django.svg';
 
 import android from '../assets/logos/android.svg';
-import dark_android from '../assets/logos/dark/android.svg';
 
 import unity from '../assets/logos/unity.svg';
 import dark_unity from '../assets/logos/dark/unity.svg';
@@ -66,5 +65,4 @@ export {
 	dark_latex,
 	dark_ros,
 	dark_unity,
-	dark_android,
 };

@@ -24,7 +24,6 @@ import {
 	dark_latex,
 	dark_ros,
 	dark_unity,
-	dark_android,
 } from './index';
 
 const Skills = ({ darkMode }) => {
@@ -40,7 +39,7 @@ const Skills = ({ darkMode }) => {
 		{ icon: angular, name: 'Angular' },
 		{ icon: vue, name: 'Vue' },
 		{ icon: darkMode ? dark_django : django, name: 'Django' },
-		{ icon: darkMode ? dark_android : android, name: 'Android Studio' },
+		{ icon: android, name: 'Android Studio' },
 		{
 			icon: darkMode ? dark_unity : unity,
 			name: 'Unity',
