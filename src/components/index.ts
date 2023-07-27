@@ -5,26 +5,40 @@ import Experience from './Experience';
 import Projects from './Projects';
 import Skills from './Skills';
 
-import react from '../assets/react.svg';
-import angular from '../assets/angular.svg';
-import vue from '../assets/vue.svg';
+import react from '../assets/logos/react.svg';
+import angular from '../assets/logos/angular.svg';
+import vue from '../assets/logos/vue.svg';
 
-import django from '../assets/django.svg';
+import django from '../assets/logos/django.svg';
+import dark_django from '../assets/logos/dark/django.svg';
 
-import android from '../assets/android.svg';
-import unity from '../assets/unity.svg';
-import ros from '../assets/ros.svg';
-import jupyter from '../assets/jupyter.svg';
-import aws from '../assets/aws.svg';
-import git from '../assets/git.svg';
+import android from '../assets/logos/android.svg';
+import dark_android from '../assets/logos/dark/android.svg';
 
-import js from '../assets/js.svg';
-import ts from '../assets/ts.svg';
-import cpp from '../assets/cpp.svg';
-import java from '../assets/java.svg';
-import python from '../assets/vue.svg';
-import html from '../assets/html.svg';
-import css from '../assets/css.svg';
+import unity from '../assets/logos/unity.svg';
+import dark_unity from '../assets/logos/dark/unity.svg';
+
+import ros from '../assets/logos/ros.svg';
+import dark_ros from '../assets/logos/dark/ros.svg';
+
+import jupyter from '../assets/logos/jupyter.svg';
+import dark_jupyter from '../assets/logos/dark/jupyter.svg';
+
+import aws from '../assets/logos/aws.svg';
+import dark_aws from '../assets/logos/dark/aws.svg';
+
+import git from '../assets/logos/git.svg';
+
+import js from '../assets/logos/js.svg';
+import ts from '../assets/logos/ts.svg';
+import cpp from '../assets/logos/cpp.svg';
+import java from '../assets/logos/java.svg';
+import python from '../assets/logos/python.svg';
+import html from '../assets/logos/html.svg';
+import css from '../assets/logos/css.svg';
+
+import latex from '../assets/logos/latex.svg';
+import dark_latex from '../assets/logos/dark/latex.svg';
 
 export { Navbar, Hero, Experience, Projects, Skills, Footer };
 export {
@@ -45,4 +59,12 @@ export {
 	python,
 	html,
 	css,
+	latex,
+	dark_aws,
+	dark_django,
+	dark_jupyter,
+	dark_latex,
+	dark_ros,
+	dark_unity,
+	dark_android,
 };

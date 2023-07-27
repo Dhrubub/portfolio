@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import ScrollToTop from './components/ScrollToTop';
 import WIPBanner from './components/WIPBanner';
+import Experiment from './components/Experiment';
 
 const App = () => {
 	const [darkMode, setDarkMode] = useState(
@@ -82,7 +83,7 @@ const App = () => {
 					<Hero />
 					<Experience />
 					<Projects />
-					<Skills />
+					<Skills darkMode={darkMode} />
 				</div>
 			</div>
 

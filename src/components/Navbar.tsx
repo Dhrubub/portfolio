@@ -5,7 +5,9 @@ import {
 	faMoon,
 	faBars,
 	faTimes,
+	faCog,
 } from '@fortawesome/free-solid-svg-icons';
+import Experiment from './Experiment';
 
 export const navLinks = [
 	{
@@ -34,6 +36,7 @@ type NavbarProps = {
 const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 	const [darkMode, setDarkMode] = useState(isDarkMode);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const [isCustomThemeOpen, setIsCustomThemeOpen] = useState(false);
 
 	const sidebarContainerRef = useRef<HTMLDivElement>(null);
 
@@ -78,14 +81,32 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 				<button onClick={handleToggleDarkMode}>
 					<FontAwesomeIcon
 						icon={darkMode ? faMoon : faSun}
-						className={`w-[20px] h-[20px] text-secondary mt-1 cursor-pointer`}
+						className={`w-[20px] h-[20px] text-secondary mt-1 cursor-pointer mr-5`}
 					/>
 				</button>
+				{/* <button
+					onClick={() => {
+						setIsCustomThemeOpen((prev) => !prev);
+					}}
+				>
+					<FontAwesomeIcon
+						icon={faCog}
+						className={`w-[20px] h-[20px] text-secondary mt-1 cursor-pointer`}
+					/>
+				</button> */}
 			</ul>
 
 			{isSidebarOpen && (
 				<div className='fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 z-10'></div>
 			)}
+
+			{/* {isCustomThemeOpen && (
+				<div className='z-10'>
+					<Experiment
+						close={() => setIsCustomThemeOpen((prev) => !prev)}
+					/>
+				</div>
+			)} */}
 
 			<div
 				className='sm:hidden flex flex-1 justify-end items-center z-[11]'
@@ -96,6 +117,15 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 					className={`w-[20px] h-[20px] text-secondary mr-6 cursor-pointer`}
 					onClick={handleToggleDarkMode}
 				/>
+
+				{/* <FontAwesomeIcon
+					icon={faCog}
+					className={`w-[20px] h-[20px] text-secondary mr-6 cursor-pointer`}
+					onClick={() => {
+						setIsCustomThemeOpen((prev) => !prev);
+					}}
+				/> */}
+
 				<FontAwesomeIcon
 					icon={isSidebarOpen ? faTimes : faBars}
 					className={`w-[20px] h-[20px] text-secondary cursor-pointer`}

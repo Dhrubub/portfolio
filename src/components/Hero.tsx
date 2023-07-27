@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../style';
 
 import dhruv from '../assets/dhruv.png';
+import casualDhruv from '../assets/casual_dhruv.jpg';
+
 import resume from '../assets/Dhruv_Resume.pdf';
 
 const Hero = () => {
+	const [isCasual, setCasualImage] = useState(false);
+	const [isFlipped, setFlipped] = useState(false);
+
+	const handleClick = () => {
+		setCasualImage((prev) => !prev);
+		setFlipped((prev) => !prev);
+	};
+
 	return (
 		<section
 			id='home'
@@ -62,11 +72,13 @@ const Hero = () => {
 			>
 				<div className='flex-1 xs:flex-[0] flex flex-col justify-between items-center w-full h-[50vh] xs:h-auto my-[25%] ss:my-[10%] sm:m-auto'>
 					<img
-						src={dhruv}
+						src={isCasual ? casualDhruv : dhruv}
 						alt='dhruv'
-						className='
-                        max-w-[180px] max-h-[180px]
-                        rounded-full'
+						className={`image-flip cursor-pointer max-w-[180px] max-h-[180px] rounded-full ${
+							isFlipped ? 'flip' : ''
+						}`}
+						onClick={handleClick}
+						// onClick={() => setCasualImage((prev) => !prev)}
 					/>
 					<h1
 						className='flex-1 font-semibold text-tertiary 

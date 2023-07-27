@@ -66,3 +66,25 @@
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
 		rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
+
+.custom-shadow {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+		rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.image-flip {
+	/* Add other necessary styles here */
+
+	/* Set up the transition */
+	transition: transform 0.5s ease;
+}
+
+.image-flip.flip {
+	/* Apply the flip effect */
+	transform: perspective(600px) scaleX(-1) rotateY(180deg);
+}
+
+/* styles.css (or your preferred CSS file) */
+.icon-svg {
+	fill: #ffffff; /* Set the fill color for dark mode */
+}

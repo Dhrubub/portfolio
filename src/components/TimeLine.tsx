@@ -105,7 +105,7 @@ function TimeLine() {
 			{eventCount < TimeLineElements.length && (
 				<FontAwesomeIcon
 					icon={faCirclePlus}
-					className='text-[28px] mt-6 text-secondary cursor-pointer'
+					className='text-[28px] mt-6 text-secondary cursor-pointer w-fit mx-auto'
 					onClick={() => {
 						setEventCount((prev) => prev + 1);
 						setShowCard((prev) => [...prev, true]);
