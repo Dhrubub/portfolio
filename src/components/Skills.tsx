@@ -76,18 +76,6 @@ const Skills = ({ darkMode }) => {
 							className='flex flex-col items-center'
 						>
 							<div className='min-h-[60px] justify-center flex'>
-								{/* <div
-									className={`md:w-[50px] ss:w-[45px] w-[35px] contain object-contain${
-										item.name.toLowerCase() in
-										['django', 'latex']
-											? 'md:h-[50px] ss:h-[45px] h-[35px]'
-											: ''
-									}`}
-									style={{
-										background: `url(${item.icon}) no-repeat center`,
-										backgroundColor: '#fff',
-									}}
-								></div> */}
 								<img
 									className={`
 									md:w-[50px] ss:w-[45px] w-[35px] m-auto ${
@@ -95,7 +83,7 @@ const Skills = ({ darkMode }) => {
 										['django', 'latex']
 											? 'md:h-[50px] ss:h-[45px] h-[35px]'
 											: ''
-									} icon-svg`}
+									}`}
 									src={item.icon}
 									alt={item.name}
 									title={item.name}

@@ -23,7 +23,7 @@
 	--tertiary: #f1935c;
 	--dimTertiary: #dddddd;
 
-	--footer: #353b52;
+	--footer: #32384f;
 }
 
 * {
@@ -82,9 +82,4 @@
 .image-flip.flip {
 	/* Apply the flip effect */
 	transform: perspective(600px) scaleX(-1) rotateY(180deg);
-}
-
-/* styles.css (or your preferred CSS file) */
-.icon-svg {
-	fill: #ffffff; /* Set the fill color for dark mode */
 }
