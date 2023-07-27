@@ -67,7 +67,7 @@ const Skills = ({ darkMode }) => {
 				<div className='sm:w-[300px] w-full border-t-[1px] border-t-tertiary opacity-75'></div>
 			</div>
 			<div
-				className={`${styles.paddingX} flex flex-1 justify-center items-center max-w-[800px] m-auto`}
+				className={`sm:px-16 ss:px-6 flex flex-1 justify-center items-center max-w-[800px] m-auto`}
 			>
 				<div className='rounded-lg w-full justify-center items-center grid grid-cols-6 gap-4  p-4'>
 					{items.map((item, index) => (
