@@ -39,6 +39,7 @@ const Skills = ({ darkMode }) => {
 		{ icon: angular, name: 'Angular' },
 		{ icon: vue, name: 'Vue' },
 		{ icon: darkMode ? dark_django : django, name: 'Django' },
+		{ icon: git, name: 'Git' },
 		{ icon: android, name: 'Android Studio' },
 		{
 			icon: darkMode ? dark_unity : unity,
@@ -50,7 +51,6 @@ const Skills = ({ darkMode }) => {
 			name: 'Jupyter',
 		},
 		{ icon: darkMode ? dark_aws : aws, name: 'AWS' },
-		{ icon: git, name: 'Git' },
 		{
 			icon: darkMode ? dark_latex : latex,
 			name: 'Latex',
@@ -68,7 +68,7 @@ const Skills = ({ darkMode }) => {
 			<div
 				className={`sm:px-16 ss:px-6 flex flex-1 justify-center items-center max-w-[800px] m-auto`}
 			>
-				<div className='rounded-lg w-full justify-center items-center grid grid-cols-6 gap-4  p-4'>
+				<div className='rounded-lg w-full justify-center items-center grid grid-cols-6 gap-4 p-4'>
 					{items.map((item, index) => (
 						<span
 							key={index}
@@ -88,7 +88,7 @@ const Skills = ({ darkMode }) => {
 									title={item.name}
 								/>
 							</div>
-							<span className='text-[12px] hidden sm:block text-secondary text-center'>
+							<span className='text-[12px] hidden ss:block text-secondary text-center'>
 								{item.name}
 							</span>
 						</span>

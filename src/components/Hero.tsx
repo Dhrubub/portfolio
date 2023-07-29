@@ -74,7 +74,7 @@ const Hero = () => {
 					<img
 						src={isCasual ? casualDhruv : dhruv}
 						alt='dhruv'
-						className={`image-flip cursor-pointer max-w-[180px] max-h-[180px] rounded-full ${
+						className={`transition-transform duration-300 ease-linear cursor-pointer max-w-[180px] max-h-[180px] rounded-full ${
 							isFlipped ? 'flip' : ''
 						}`}
 						onClick={handleClick}

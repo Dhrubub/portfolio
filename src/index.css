@@ -72,14 +72,10 @@
 		rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
-.image-flip {
-	/* Add other necessary styles here */
-
-	/* Set up the transition */
-	transition: transform 0.5s ease;
+.flip {
+	transform: perspective(600px) scaleX(-1) rotateY(180deg);
 }
 
-.image-flip.flip {
-	/* Apply the flip effect */
-	transform: perspective(600px) scaleX(-1) rotateY(180deg);
+.project-card-shadow {
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
