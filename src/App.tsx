@@ -11,6 +11,8 @@ import {
 import { Helmet } from 'react-helmet';
 import darkLogo from './assets/dark-logo.png';
 import lightLogo from './assets/light-logo.png';
+import darkLogoSquare from './assets/dark-logo-square.png';
+import lightLogoSquare from './assets/light-logo-square.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import ScrollToTop from './components/ScrollToTop';
@@ -62,7 +64,7 @@ const App = () => {
 				/>
 				<link
 					rel='apple-touch-icon'
-					href={darkMode ? darkLogo : lightLogo}
+					href={darkMode ? darkLogoSquare : lightLogoSquare}
 				/>
 			</Helmet>
 
