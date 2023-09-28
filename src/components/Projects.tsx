@@ -70,13 +70,17 @@ const Projects = () => {
 				))}
 			</div> */}
 
-			<div className='flex flex-wrap justify-center max-w-[1600px] feedback-container relative m-auto'>
+			<p className='m-auto w-fit text-[24px] text-secondary'>
+				Coming soon!
+			</p>
+
+			{/* <div className='flex flex-wrap justify-center max-w-[1600px] feedback-container relative m-auto'>
 				{projects.map((project, index) => (
 					<div className='p-3'>
 						<ProjectCard key={index} {...project} />
 					</div>
 				))}
-			</div>
+			</div> */}
 		</section>
 	);
 };

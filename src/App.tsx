@@ -62,7 +62,7 @@ const App = () => {
 				/>
 			</Helmet>
 
-			<WIPBanner />
+			{/* <WIPBanner /> */}
 			<ScrollToTop />
 
 			<div
