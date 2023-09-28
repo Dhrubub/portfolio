@@ -60,6 +60,10 @@ const App = () => {
 					type='image/svg+xml'
 					href={darkMode ? darkLogo : lightLogo}
 				/>
+				<link
+					rel='apple-touch-icon'
+					href={darkMode ? darkLogo : lightLogo}
+				/>
 			</Helmet>
 
 			{/* <WIPBanner /> */}
