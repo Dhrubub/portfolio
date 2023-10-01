@@ -111,13 +111,22 @@ const exp = {
 			'Designed and implemented crucial backend infrastructure, integrating it seamlessly with the frontend to enable login and perform CRUD operations for various applications.',
 			'Collaborated with a team to develop various features, ensuring user experience and efficient functionality.',
 		],
-		date: 'June 2023 - Present',
+		date: 'June 2023 - July 2023',
 		skills: [],
 		icon: faLaptopCode,
+	},
+	canva: {
+		title: 'Upcoming Summer Intern',
+		position: 'Software Engineering Intern',
+		description: [],
+		date: 'December 2023 - February 2024',
+		skills: [],
+		icon: faBriefcase,
 	},
 };
 
 const TimeLineElements: TimeLineElementProps[] = [
+	// exp.canva,
 	exp.masters,
 	exp.cfc_csf,
 	exp.research,
