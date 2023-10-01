@@ -79,3 +79,13 @@
 .project-card-shadow {
 	box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
+
+.test:after {
+	box-shadow: inset rgba(0, 0, 0, 0.08) 0px 4px 12px;
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}

@@ -23,14 +23,20 @@ const ProjectCard = ({
 			className='flex justify-between flex-col
 		w-[280px] project-card-shadow h-full rounded-xl'
 		>
-			<div className='relative pb-[100%]'>
-				{/* Image (Replace 'image-url' with the actual image URL) */}
-				<img
-					className='absolute inset-0 object-cover object-center w-full h-full rounded-t-xl dark:border-[1px] dark:border-secondary dark:border-b-0'
-					src={image}
-					alt={title}
-				/>
+			<div className='relative pb-[100%] group overflow-hidden rounded-t-xl'>
+				{/* Div with sliding down effect */}
+				<div className='z-10 absolute inset-0 w-full h-full bg-black opacity-0 transform -translate-y-full transition-transform duration-300 group-hover:opacity-30 group-hover:translate-y-0 cursor-pointer'></div>
+
+				{/* Image */}
+				<div className='test'>
+					<img
+						className='absolute inset-0 object-cover object-center w-full h-full rounded-t-xl dark:border-[1px] dark:border-secondary dark:border-b-0'
+						src={image}
+						alt={title}
+					/>
+				</div>
 			</div>
+
 			<div className='flex flex-col h-full text-primary bg-secondary dark:text-secondary dark:bg-footer rounded-b-xl border-[1px] border-secondary'>
 				<div className='px-3 py-4 flex-grow'>
 					{/* Title */}
@@ -42,7 +48,7 @@ const ProjectCard = ({
 							</span>
 						))}
 						<div
-							className={`flex flex-1 w-[18%] mr-0 ml-auto ${
+							className={`flex flex-1 w-[18%] h-[24px] mr-0 ml-auto ${
 								github && link
 									? 'justify-between'
 									: 'justify-end'

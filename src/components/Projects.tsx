@@ -41,16 +41,27 @@ const Projects = () => {
 			image: PythonPerfect,
 			skills: [],
 			github: 'https://github.com/Dhruv8601/PythonPerfect',
-			link: 'https://github.com/Dhruv8601/PythonPerfect',
 		},
-		{ title: 'Evolutionary Trading Bot', image: TradingBot, skills: [] },
+		{
+			title: 'Evolutionary Trading Bot',
+			image: TradingBot,
+			skills: [],
+			github: 'https://github.com/Dhruv8601/Evolutionary-Trading-Bot',
+		},
 		{
 			title: 'Community Spirit Foundation',
 			image: CSF,
 			skills: [],
+			github: 'https://github.com/codersforcauses/csf',
+			link: 'https://stride-for-education.vercel.app/',
 		},
-		{ title: '3D Particle Simulator', image: Particles, skills: [] },
-		{ title: 'Full stack web app', image: PythonPerfect, skills: [] },
+		{
+			title: '3D Particle Simulator',
+			image: Particles,
+			skills: [],
+			github: 'https://github.com/Dhruv8601/small-molecules',
+		},
+		// { title: 'Full stack web app', image: PythonPerfect, skills: [] },
 	];
 	return (
 		<section id='projects'>
@@ -69,18 +80,18 @@ const Projects = () => {
 					</div>
 				))}
 			</div> */}
-
+			{/* 
 			<p className='m-auto w-fit text-[24px] text-secondary'>
 				Coming soon!
-			</p>
+			</p> */}
 
-			{/* <div className='flex flex-wrap justify-center max-w-[1600px] feedback-container relative m-auto'>
+			<div className='flex flex-wrap justify-center max-w-[1600px] feedback-container relative m-auto'>
 				{projects.map((project, index) => (
 					<div className='p-3'>
 						<ProjectCard key={index} {...project} />
 					</div>
 				))}
-			</div> */}
+			</div>
 		</section>
 	);
 };
