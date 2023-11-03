@@ -8,7 +8,7 @@ const Footer = () => {
 		{
 			name: 'github',
 			icon: faGithub,
-			link: 'https://github.com/Dhruv8601',
+			link: 'https://github.com/Dhrubub',
 		},
 		{
 			name: 'linkedin',

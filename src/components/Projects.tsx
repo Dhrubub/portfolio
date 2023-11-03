@@ -40,8 +40,8 @@ const Projects = () => {
 			title: 'Python Perfect',
 			image: PythonPerfect,
 			skills: [],
-			github: 'https://github.com/Dhruv8601/PythonPerfect',
-			link: 'https://github.com/Dhruv8601/PythonPerfect',
+			github: 'https://github.com/Dhrubub/PythonPerfect',
+			link: 'https://github.com/Dhrubub/PythonPerfect',
 		},
 		{ title: 'Evolutionary Trading Bot', image: TradingBot, skills: [] },
 		{
