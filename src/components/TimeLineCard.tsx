@@ -97,7 +97,7 @@ const TimeLineCard = ({
 					</span>
 				</div>
 
-				<ul className='list-none text-justify'>
+				<ul className='list-none text-left sm:text-justify'>
 					{description.map((item, index) => (
 						<li
 							key={index}
