@@ -50,9 +50,10 @@ function TimeLine() {
 				getPercentage(item, topThreshold)
 			);
 
+			const LIMIT = 6;
 			const cards = timelineDotItems.map((item, index) => {
 				const show = getPercentage(item, 1 * viewportHeight) > 0;
-				if (show) setEventCount(Math.max(index + 1, 6));
+				if (show) setEventCount(Math.max(index + 1, LIMIT));
 				return show;
 			});
 

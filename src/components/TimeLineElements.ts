@@ -17,7 +17,7 @@ interface TimeLineElementProps {
 const exp = {
 	visagio: {
 		title: 'Visagio',
-		position: 'Software Engineering Consultant',
+		position: 'Software Engineer Consultant',
 		description: [
 			'Developed features in a web tool using Angular and Typescript to streamline manual processes, resulting in a 15% increase in efficiency.',
 			'Designed a structure to improve code quality and reduce code size by 10%.',
@@ -32,10 +32,10 @@ const exp = {
 		title: 'UWA',
 		position: 'Research Assistant',
 		description: [
+			'Published a literature review in EUVIP 2023 titled: Classical approaches and new deep learning trends to assist in accurately and efficiently diagnosing ear disease from otoscopic images.',
 			'Created a deep learning model with Python and Keras to diagnose ear diseases from otoscopic images.',
-			'Utilised LaTeX to present experimental results in a thesis and submitted a literature review in a journal.',
 		],
-		date: 'Nov 2022 - Present',
+		date: 'Nov 2022 - Dec 2023',
 		skills: [],
 		icon: faBriefcase,
 	},
@@ -68,8 +68,10 @@ const exp = {
 		position: 'Honours in Software Engineering and Computer Science',
 		description: [
 			'First Class Honours',
+			'WAM: 82.13%',
+			'GPA: 6.375 / 7',
 			'Thesis title: Using deep learning to assist in \
-			accurately diagnosing ear diseases from otoscopic images',
+			accurately diagnosing ear diseases from otoscopic images.',
 		],
 		date: 'Feb 2022 - Nov 2022',
 		skills: [],
@@ -87,8 +89,8 @@ const exp = {
 		title: 'UWA',
 		position: 'Master of Professional Engineering (Software)',
 		description: [
-			'WAM: 85.67%',
-			'GPA: 7.0 / 7',
+			'WAM: 82.88%',
+			'GPA: 6.75 / 7',
 			'Expected graduation end of 2024',
 		],
 		date: 'Feb 2023 - Present',
@@ -115,19 +117,34 @@ const exp = {
 		skills: [],
 		icon: faLaptopCode,
 	},
+	canva_intern: {
+		title: 'Canva',
+		position: 'Software Engineer Intern (Frontend)',
+		description: [
+			'Utilised TypeScript and MobX to develop features for an accessibility design checker, empowering users to enhance the accessibility of their designs in compliance with accessibility standards such as WCAG.',
+			'Reduced the volume of help tickets by implementing a tool that identifies and addresses accessibility issues in user designs, improving the overall user experience.',
+			'Maintained comprehensive documentation, to facilitate understanding, collaboration and future maintenance by team members.',
+		],
+		date: 'Dec 2023 - Feb 2024',
+		skills: [],
+		icon: faBriefcase,
+	},
 	canva: {
-		title: 'Upcoming Summer Intern',
-		position: 'Software Engineering Intern',
-		description: [],
-		date: 'December 2023 - February 2024',
+		title: 'Canva',
+		position: 'Future Graduate Software Engineer',
+		description: [
+			'Upcoming Frontend Graduate Software Engineer for the Accessibility Team.',
+		],
+		date: 'Starting Feb 2025',
 		skills: [],
 		icon: faBriefcase,
 	},
 };
 
 const TimeLineElements: TimeLineElementProps[] = [
-	// exp.canva,
+	exp.canva,
 	exp.masters,
+	exp.canva_intern,
 	exp.cfc_csf,
 	exp.research,
 	exp.visagio,
