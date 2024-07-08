@@ -131,9 +131,9 @@ const exp = {
 	},
 	canva: {
 		title: 'Canva',
-		position: 'Future Graduate Software Engineer',
+		position: 'Future Graduate Software Engineer (Frontend)',
 		description: [
-			'Upcoming Frontend Graduate Software Engineer for the Accessibility Team.',
+			'Upcoming Graduate Frontend Software Engineer for the Accessibility Team.',
 		],
 		date: 'Starting Feb 2025',
 		skills: [],
