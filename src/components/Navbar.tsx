@@ -35,6 +35,7 @@ type NavbarProps = {
 
 const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 	const [darkMode, setDarkMode] = useState(isDarkMode);
+	const [hasSideBarOpened, setHasSideBarOpened] = useState(false);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const [isCustomThemeOpen, setIsCustomThemeOpen] = useState(false);
 
@@ -129,15 +130,20 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
 				<FontAwesomeIcon
 					icon={isSidebarOpen ? faTimes : faBars}
 					className={`w-[20px] h-[20px] text-secondary cursor-pointer`}
-					onClick={() => setIsSidebarOpen((prev) => !prev)}
+					onClick={() => {
+						setHasSideBarOpened(true);
+						setIsSidebarOpen((prev) => !prev);
+					}}
 				/>
 
 				<div
-					className={`${
-						isSidebarOpen
-							? 'flex translate-x-0'
-							: 'translate-x-full '
-					} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out duration-500 shadow-inner`}
+					className={`
+						${hasSideBarOpened ? 'duration-500' : ''}
+						${
+							isSidebarOpen
+								? 'flex translate-x-0'
+								: 'translate-x-full '
+						} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out shadow-inner`}
 				>
 					<ul className='list-none flex flex-col justify-start items-start flex-1'>
 						{navLinks.map((nav) => (
