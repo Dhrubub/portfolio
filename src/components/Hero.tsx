@@ -5,6 +5,7 @@ import dhruv from '../assets/dhruv.png';
 import casualDhruv from '../assets/casual_dhruv.jpg';
 
 import resume from '../assets/Dhruv_Resume.pdf';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
 	const [isCasual, setCasualImage] = useState(false);
@@ -57,12 +58,11 @@ const Hero = () => {
 					>
 						Contact
 					</a>
-					<button
-						className='bg-tertiary text-primary dark:text-secondary px-2 py-1 ml-2 rounded-lg'
-						onClick={() => window.open(resume, '_blank')}
-					>
-						Resume
-					</button>
+					<Link to='/resume'>
+						<button className='bg-tertiary text-primary dark:text-secondary px-2 py-1 ml-2 rounded-lg'>
+							Resume
+						</button>
+					</Link>
 				</div>
 			</div>
 

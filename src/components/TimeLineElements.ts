@@ -88,12 +88,8 @@ const exp = {
 	masters: {
 		title: 'UWA',
 		position: 'Master of Professional Engineering (Software)',
-		description: [
-			'WAM: 82.88%',
-			'GPA: 6.75 / 7',
-			'Expected graduation end of 2024',
-		],
-		date: 'Feb 2023 - Present',
+		description: ['WAM: 82.88%', 'GPA: 6.75 / 7'],
+		date: 'Feb 2023 - Dec 2024',
 		skills: [],
 		icon: faGraduationCap,
 	},

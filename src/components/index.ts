@@ -35,6 +35,7 @@ import java from '../assets/logos/java.svg';
 import python from '../assets/logos/python.svg';
 import html from '../assets/logos/html.svg';
 import css from '../assets/logos/css.svg';
+import r from '../assets/logos/R.svg';
 
 import latex from '../assets/logos/latex.svg';
 import dark_latex from '../assets/logos/dark/latex.svg';
@@ -56,6 +57,7 @@ export {
 	cpp,
 	java,
 	python,
+	r,
 	html,
 	css,
 	latex,
