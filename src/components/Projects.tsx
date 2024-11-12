@@ -37,20 +37,30 @@ import Particles from '../assets/projects/particles.png';
 const Projects = () => {
 	const projects = [
 		{
-			title: 'Python Perfect',
+			title: 'Full stack web app',
 			image: PythonPerfect,
-			skills: [],
+			skills: ['python', 'flask', 'Sqlite'],
 			github: 'https://github.com/Dhrubub/PythonPerfect',
-			link: 'https://github.com/Dhrubub/PythonPerfect',
+			// link: 'https://github.com/Dhrubub/PythonPerfect',
 		},
-		{ title: 'Evolutionary Trading Bot', image: TradingBot, skills: [] },
+		{
+			title: 'Evolutionary Trading Bot',
+			image: TradingBot,
+			skills: ['python', 'genetic algorithm'],
+			github: 'https://github.com/Dhrubub/Evolutionary-Trading-Bot',
+		},
 		{
 			title: 'Community Spirit Foundation',
 			image: CSF,
-			skills: [],
+			skills: ['django', 'vue'],
+			github: 'https://github.com/codersforcauses/csf',
 		},
-		{ title: '3D Particle Simulator', image: Particles, skills: [] },
-		{ title: 'Full stack web app', image: PythonPerfect, skills: [] },
+		{
+			title: '3D Particle Simulator',
+			image: Particles,
+			skills: ['c#', 'unity'],
+			github: 'https://github.com/Dhrubub/small-molecules',
+		},
 	];
 	return (
 		<section id='projects'>
@@ -60,27 +70,17 @@ const Projects = () => {
 				</h1>
 				<div className='sm:w-[300px] w-full border-t-[1px] border-t-tertiary opacity-75'></div>
 			</div>
-			{/* <div
-				className={`sm:px-16 ss:px-6 flex flex-1 flex-wrap justify-center items-center max-w-[800px] m-auto`}
-			>
-				{projects.map((item, index) => (
-					<div>
-						<ProjectCard title={item.title} skills={[]} />
-					</div>
-				))}
-			</div> */}
 
 			<p className='m-auto w-fit text-[24px] text-secondary'>
-				Coming soon!
+				More projects coming soon!
 			</p>
-
-			{/* <div className='flex flex-wrap justify-center max-w-[1600px] feedback-container relative m-auto'>
+			<div className='flex flex-wrap justify-center max-w-[1600px] feedback-container relative m-auto'>
 				{projects.map((project, index) => (
 					<div className='p-3'>
 						<ProjectCard key={index} {...project} />
 					</div>
 				))}
-			</div> */}
+			</div>
 		</section>
 	);
 };
