@@ -4,7 +4,6 @@ import styles from '../style';
 import dhruv from '../assets/dhruv.png';
 import casualDhruv from '../assets/casual_dhruv.jpg';
 
-import resume from '../assets/Dhruv_Resume.pdf';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -90,14 +89,15 @@ const Hero = () => {
 					<p
 						className={`text-secondary md:text-[16px] text-[14px] md:max-w-[450px] max-w-[380px] text-justify`}
 					>
-						Currently pursuing my Master of Professional Engineering
-						(Software) at The Univeristy of Western Australia (UWA),
-						I am driven by a pursuit of growth and knowledge. I
-						approach each day with a commitment to learning and
-						strive to give my best in every opportunity that comes
-						my way. Embrancing challenges and seeking new
-						experiences, I aim to continuously expand my skills and
-						knowledge and strive for excellence in every endeavour.
+						Having recently graduated from a Master of Professional
+						Engineering with Distinction (Software) from The
+						Univeristy of Western Australia (UWA), I am excited to
+						begin my journey as a Graduate Software Engineer
+						(Frontend) at Canva. I also aim to expand my skillset in
+						backend development and become a versatile engineer,
+						capable of delivering impactful work and solving complex
+						problems. I look forward to the opportunities the future
+						holds and how I can have an impact on the world.
 					</p>
 				</div>
 			</div>

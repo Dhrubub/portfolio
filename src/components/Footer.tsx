@@ -43,7 +43,7 @@ const Footer = () => {
 					Website built using ReactJS and TailwindCSS
 				</p>
 				<p className='text-[12px] sm:text-[14px] text-secondary'>
-					Last Updated on 8 November 2024
+					Last Updated on 27 December 2024
 				</p>
 			</div>
 		</div>

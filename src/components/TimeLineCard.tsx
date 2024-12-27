@@ -86,12 +86,12 @@ const TimeLineCard = ({
 			</TimelineSeparator>
 			<TimelineContent className='!font-poppins !pt-[7.1px] sm:!pt-[1px] !px-[0px]'>
 				<div className='flex items-end'>
-					<span className='text-tertiary font-semibold sm:text-[24px] text-[18px] max-w-[470px] sm:max-w-[640px]'>
+					<span className='text-tertiary font-semibold sm:text-[20px] text-[16px] max-w-[470px] sm:max-w-[640px]'>
 						{title}
-						<span className='mx-2 text-tertiary font-light sm:text-[22px] text-[16px]'>
+						<span className='mx-2 text-tertiary font-light sm:text-[20px] text-[14px]'>
 							|
 						</span>
-						<span className='text-tertiary font-normal sm:text-[20px] text-[14px]'>
+						<span className='text-tertiary font-normal sm:text-[18px] text-[12px]'>
 							{position}
 						</span>
 					</span>

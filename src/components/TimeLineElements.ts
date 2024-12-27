@@ -17,7 +17,7 @@ interface TimeLineElementProps {
 const exp = {
 	visagio: {
 		title: 'Visagio',
-		position: 'Software Engineer Consultant',
+		position: 'Technology Consultant Intern',
 		description: [
 			'Developed features in a web tool using Angular and Typescript to streamline manual processes, resulting in a 15% increase in efficiency.',
 			'Designed a structure to improve code quality and reduce code size by 10%.',
@@ -35,13 +35,13 @@ const exp = {
 			'Published a literature review in EUVIP 2023 titled: Classical approaches and new deep learning trends to assist in accurately and efficiently diagnosing ear disease from otoscopic images.',
 			'Created a deep learning model with Python and Keras to diagnose ear diseases from otoscopic images.',
 		],
-		date: 'Nov 2022 - Dec 2023',
+		date: 'Nov 2022 - Sep 2023',
 		skills: [],
 		icon: faBriefcase,
 	},
 	soar: {
 		title: 'Soar.Earth',
-		position: 'Junior Software Engineer',
+		position: 'Software Engineer Intern',
 		description: [
 			'Enhanced the UI of the Soar.Earth platform through React, Redux, Typescript, HTML, and CSS, contributing to a 10x increase in user registrations to 50,000.',
 			'Performed automated testing using the React Testing Library and Cypress.',
@@ -59,17 +59,17 @@ const exp = {
 			'Tutored and assisted a class of 15 university students in CITS1001 Software Engineering with Java.',
 			'Evaluated projects and assessments, offered constructive feedback, and monitored exams.',
 		],
-		date: 'March 2022 - June 2022',
+		date: 'Mar 2022 - Jun 2022',
 		skills: [],
 		icon: faBriefcase,
 	},
 	honours: {
 		title: 'UWA',
-		position: 'Honours in Software Engineering and Computer Science',
+		position:
+			'Bachelor of Science with First Class Honours (Software Engineering and Computer Science)',
 		description: [
-			'First Class Honours',
 			'WAM: 82.13%',
-			'GPA: 6.375 / 7',
+			'GPA: 6.40 / 7',
 			'Thesis title: Using deep learning to assist in \
 			accurately diagnosing ear diseases from otoscopic images.',
 		],
@@ -79,7 +79,7 @@ const exp = {
 	},
 	undergrad: {
 		title: 'UWA',
-		position: 'Engineering Science and Computer Science',
+		position: 'Bachelor of Science (Engineering Science, Computer Science)',
 		description: ['WAM: 80.50%', 'GPA: 6.50 / 7'],
 		date: 'Feb 2019 - Nov 2021',
 		skills: [],
@@ -87,8 +87,9 @@ const exp = {
 	},
 	masters: {
 		title: 'UWA',
-		position: 'Master of Professional Engineering (Software)',
-		description: ['WAM: 82.88%', 'GPA: 6.75 / 7'],
+		position:
+			'Master of Professional Engineering with Distinction (Software)',
+		description: ['WAM: 82.36%', 'GPA: 6.73 / 7'],
 		date: 'Feb 2023 - Dec 2024',
 		skills: [],
 		icon: faGraduationCap,
@@ -96,7 +97,10 @@ const exp = {
 	school: {
 		title: 'Willetton Senior High School',
 		position: 'High School',
-		description: ['ATAR: 99.40 (Top 0.6% in the state)'],
+		description: [
+			'ATAR: 99.40 (Top 0.6% in the state)',
+			'Subjects: Math Specialist, Math Methods, Chemistry, Physics, English, Hindi',
+		],
 		date: '2014 - 2018',
 		skills: [],
 		icon: faGraduationCap,
@@ -127,7 +131,7 @@ const exp = {
 	},
 	canva: {
 		title: 'Canva',
-		position: 'Future Graduate Software Engineer (Frontend)',
+		position: 'Upcoming Graduate Software Engineer (Frontend)',
 		description: [
 			'Upcoming Graduate Frontend Software Engineer for the Accessibility Team.',
 		],
