@@ -210,7 +210,7 @@ const CommandPalette = () => {
 						<ul className='max-h-[50vh] overflow-y-auto p-2'>
 							{filtered.length === 0 && (
 								<li className='px-3 py-6 text-center font-mono text-sm text-inkFaint'>
-									no matches — try “resume” or “email”
+									no matches · try “resume” or “email”
 								</li>
 							)}
 							{filtered.map((c, i) => (

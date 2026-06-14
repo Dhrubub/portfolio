@@ -40,12 +40,17 @@ import Particles from '../assets/projects/particles.png';
 export const profile = {
 	name: 'Dhruv Jobanputra',
 	first: 'Dhruv',
-	roles: ['a software engineer', 'a frontend dev', 'an a11y nerd', 'a tinkerer'],
+	roles: [
+		'a software engineer',
+		'a backend engineer',
+		'a fullstack dev',
+		'a tinkerer',
+	],
 	location: 'Perth, Australia',
 	timezone: 'Australia/Perth',
-	status: 'Frontend Engineer @ Canva',
+	status: 'Software Engineer @ Canva',
 	nowBuilding: 'this very website 👀',
-	bio: 'Recently graduated with a Master of Professional Engineering (Software) with Distinction from UWA, and now a Frontend Engineer at Canva on the Accessibility team. I like building things that are calm to use and quietly over-engineered — and making the web work for everyone.',
+	bio: "I'm a Software Engineer at Canva. I joined as a graduate after a Master of Professional Engineering (Software) with Distinction at UWA, and I love versatile, full-stack problem solving: building services, turning complex systems into things that just work, and finding ways to use AI to build better and faster.",
 	email: 'dhruvjobanputra8@gmail.com',
 	resumeLabel: 'Résumé',
 	lastUpdated: 'June 2026',
@@ -126,12 +131,12 @@ export interface ExperienceItem {
 	org: string;
 	role: string;
 	date: string;
-	/** sort/scrub key — the year the role started (or is anchored to) */
+	/** sort/scrub key –the year the role started (or is anchored to) */
 	year: number;
 	kind: ExpKind;
 	icon: IconDefinition;
 	description: string[];
-	/** skill ids used here — powers the interactive skills highlight */
+	/** skill ids used here –powers the interactive skills highlight */
 	tech: string[];
 	current?: boolean;
 }
@@ -149,23 +154,31 @@ const make = (
 
 export const experience: ExperienceItem[] = [
 	make({
+		id: 'canva-backend',
+		org: 'Canva',
+		role: 'Software Engineer (Backend)',
+		date: 'Mar 2026 – now',
+		year: 2026,
+		kind: 'work',
+		current: true,
+		tech: ['java', 'ts'],
+		description: [],
+	}),
+	make({
 		id: 'canva-grad',
 		org: 'Canva',
 		role: 'Graduate Software Engineer (Frontend)',
-		date: 'Feb 2025 — now',
+		date: 'Feb 2025 – Feb 2026',
 		year: 2025,
 		kind: 'work',
-		current: true,
 		tech: ['ts', 'react'],
-		description: [
-			'Frontend engineer on the Accessibility team — making Canva usable for everyone.',
-		],
+		description: [],
 	}),
 	make({
 		id: 'masters',
 		org: 'UWA',
 		role: 'Master of Professional Engineering, Distinction (Software)',
-		date: 'Feb 2023 — Dec 2024',
+		date: 'Feb 2023 – Dec 2024',
 		year: 2023,
 		kind: 'education',
 		tech: [],
@@ -175,13 +188,13 @@ export const experience: ExperienceItem[] = [
 		id: 'canva-intern',
 		org: 'Canva',
 		role: 'Software Engineer Intern (Frontend)',
-		date: 'Dec 2023 — Feb 2024',
+		date: 'Dec 2023 – Feb 2024',
 		year: 2023.9,
 		kind: 'work',
 		tech: ['ts', 'react'],
 		description: [
 			'Built features for an accessibility design checker with TypeScript & MobX, helping users meet standards like WCAG.',
-			'Shipped a tool that flags & fixes a11y issues in designs — cutting related help tickets.',
+			'Shipped a tool that flags & fixes a11y issues in designs, cutting related help tickets.',
 			'Kept the docs comprehensive so the team could keep moving after me.',
 		],
 	}),
@@ -189,7 +202,7 @@ export const experience: ExperienceItem[] = [
 		id: 'csf',
 		org: 'Coders for Causes',
 		role: 'Volunteer Software Engineer',
-		date: 'Jun 2023 — Jul 2023',
+		date: 'Jun 2023 – Jul 2023',
 		year: 2023.5,
 		kind: 'volunteer',
 		tech: ['django', 'vue', 'python'],
@@ -203,7 +216,7 @@ export const experience: ExperienceItem[] = [
 		id: 'research',
 		org: 'UWA',
 		role: 'Research Assistant',
-		date: 'Nov 2022 — Sep 2023',
+		date: 'Nov 2022 – Sep 2023',
 		year: 2022.8,
 		kind: 'work',
 		tech: ['python', 'jupyter'],
@@ -216,7 +229,7 @@ export const experience: ExperienceItem[] = [
 		id: 'honours',
 		org: 'UWA',
 		role: 'BSc, First Class Honours (Software Eng & CS)',
-		date: 'Feb 2022 — Nov 2022',
+		date: 'Feb 2022 – Nov 2022',
 		year: 2022,
 		kind: 'education',
 		tech: ['python'],
@@ -229,7 +242,7 @@ export const experience: ExperienceItem[] = [
 		id: 'visagio',
 		org: 'Visagio',
 		role: 'Technology Consultant Intern',
-		date: 'May 2022 — Mar 2023',
+		date: 'May 2022 – Mar 2023',
 		year: 2022.4,
 		kind: 'work',
 		tech: ['angular', 'ts', 'python'],
@@ -244,12 +257,12 @@ export const experience: ExperienceItem[] = [
 		id: 'soar',
 		org: 'Soar.Earth',
 		role: 'Software Engineer Intern',
-		date: 'Aug 2020 — Jul 2022',
+		date: 'Aug 2020 – Jul 2022',
 		year: 2020.6,
 		kind: 'work',
 		tech: ['react', 'ts', 'java', 'android'],
 		description: [
-			'Reworked the Soar.Earth UI in React, Redux & TypeScript — part of a 10× jump in registrations to 50,000.',
+			'Reworked the Soar.Earth UI in React, Redux & TypeScript, part of a 10× jump in registrations to 50,000.',
 			'Automated testing with React Testing Library & Cypress.',
 			'Shipped features, fixed bugs and ran QA under Agile.',
 			'Modernised legacy code with Java & Android Studio.',
@@ -259,7 +272,7 @@ export const experience: ExperienceItem[] = [
 		id: 'facilitator',
 		org: 'UWA',
 		role: 'Lab Facilitator',
-		date: 'Mar 2022 — Jun 2022',
+		date: 'Mar 2022 – Jun 2022',
 		year: 2022.2,
 		kind: 'work',
 		tech: ['java'],
@@ -272,7 +285,7 @@ export const experience: ExperienceItem[] = [
 		id: 'undergrad',
 		org: 'UWA',
 		role: 'BSc (Engineering Science, Computer Science)',
-		date: 'Feb 2019 — Nov 2021',
+		date: 'Feb 2019 – Nov 2021',
 		year: 2019,
 		kind: 'education',
 		tech: [],
@@ -282,7 +295,7 @@ export const experience: ExperienceItem[] = [
 		id: 'school',
 		org: 'Willetton SHS',
 		role: 'High School',
-		date: '2014 — 2018',
+		date: '2014 – 2018',
 		year: 2014,
 		kind: 'education',
 		tech: [],
@@ -301,7 +314,7 @@ export interface Project {
 	blurb: string;
 	image: string;
 	stack: string[];
-	/** skill ids — powers interactive skills highlight */
+	/** skill ids –powers interactive skills highlight */
 	tech: string[];
 	github?: string;
 	link?: string;

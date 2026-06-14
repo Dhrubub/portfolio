@@ -66,7 +66,7 @@ const Home = () => {
 			'font-size:14px;font-weight:bold;color:#c16d83'
 		);
 		console.log(
-			'%cpsst — try the Konami code, hit ⌘K, or drag the board around.',
+			'%cpsst, try the Konami code, hit ⌘K, or drag the board around.',
 			'font-family:monospace;color:#3f8c7e'
 		);
 	}, []);

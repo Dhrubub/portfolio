@@ -58,14 +58,14 @@ const Skills = () => {
 						<span className='text-rose'>{active.label}</span>
 						{usedOrgs.length || usedProjects.length ? (
 							<>
-								{' '}— used at{' '}
+								{' '}· used at{' '}
 								<span className='text-ink'>
 									{[...usedOrgs, ...usedProjects].join(', ')}
 								</span>
 							</>
 						) : (
 							<span className='text-inkFaint'>
-								{' '}— a trusty sidekick
+								{' '}· a trusty sidekick
 							</span>
 						)}
 					</motion.p>
@@ -78,7 +78,7 @@ const Skills = () => {
 			</div>
 
 			<div className='flex flex-wrap gap-3'>
-				{skills.map((skill, i) => {
+				{skills.map((skill) => {
 					const icon =
 						theme === 'dark' && skill.iconDark
 							? skill.iconDark
@@ -86,13 +86,9 @@ const Skills = () => {
 					const isActive = activeSkill === skill.id;
 					const dimmed = activeSkill && !isActive;
 					return (
-						<motion.button
+						<button
 							key={skill.id}
 							data-cursor='hover'
-							initial={{ opacity: 0, y: 14 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.3, delay: i * 0.02 }}
 							onMouseEnter={() => setActiveSkill(skill.id)}
 							onMouseLeave={() => setActiveSkill(null)}
 							onFocus={() => setActiveSkill(skill.id)}
@@ -111,7 +107,7 @@ const Skills = () => {
 							<span className='text-sm font-medium text-ink'>
 								{skill.label}
 							</span>
-						</motion.button>
+						</button>
 					);
 				})}
 			</div>

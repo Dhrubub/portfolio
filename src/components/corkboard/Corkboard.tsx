@@ -29,8 +29,7 @@ import {
 import { useTheme } from '../../theme/ThemeContext';
 import { useHighlight } from '../../context/HighlightContext';
 import { buildItems, BOARD_W, BOARD_H, BoardItem } from './layout';
-import dhruv from '../../assets/dhruv.png';
-import casualDhruv from '../../assets/casual_dhruv.jpg';
+import avatar from '../../assets/avatar.jpg';
 
 type Pos = { x: number; y: number; rot: number };
 type Gesture =
@@ -81,7 +80,6 @@ const Corkboard = ({ onTidy }: Props) => {
 	const [zoom, setZoom] = useState(0.92);
 	const [order, setOrder] = useState<string[]>(items.map((i) => i.id));
 	const [focus, setFocus] = useState<string | null>(null);
-	const [casual, setCasual] = useState(false);
 
 	const viewportRef = useRef<HTMLDivElement>(null);
 	const gesture = useRef<Gesture>(null);
@@ -111,12 +109,6 @@ const Corkboard = ({ onTidy }: Props) => {
 				? (r.height - sh) / 2
 				: Math.min(0, Math.max(r.height - sh, py));
 		return { x, y };
-	}, []);
-
-	// preload the alt portrait so the flip never lags (fixes the bug you caught)
-	useEffect(() => {
-		const img = new Image();
-		img.src = casualDhruv;
 	}, []);
 
 	const bringToFront = useCallback((id: string) => {
@@ -327,7 +319,6 @@ const Corkboard = ({ onTidy }: Props) => {
 	};
 
 	const handleItemClick = (id: string) => {
-		if (id === 'me') return setCasual((c) => !c);
 		if (id === 'contact')
 			return navigator.clipboard?.writeText(profile.email);
 		if (id.startsWith('proj-')) {
@@ -433,7 +424,6 @@ const Corkboard = ({ onTidy }: Props) => {
 								pos={p}
 								z={z}
 								theme={theme}
-								casual={casual}
 								activeSkill={activeSkill}
 								onPointerDown={(e) => startItem(e, it.id)}
 								onSkillHover={setActiveSkill}
@@ -661,7 +651,7 @@ const Pin = ({ id, at }: { id: string; at?: number }) => {
 			style={{
 				position: 'absolute',
 				left: `${frac * 100}%`,
-				top: -22,
+				top: -30,
 				transform: `translateX(-50%) rotate(${tilt}deg) scale(${size})`,
 				zIndex: 8,
 				pointerEvents: 'none',
@@ -671,7 +661,10 @@ const Pin = ({ id, at }: { id: string; at?: number }) => {
 			{/* classic plastic push-pin: wide grip cap, narrow shaft, flared skirt — matte */}
 			<svg width='36' height='42' viewBox='0 0 36 42'>
 				{/* contact shadow on the card */}
-				<ellipse cx='18' cy='37' rx='12' ry='3.2' fill='rgba(0,0,0,0.16)' />
+				<ellipse cx='18' cy='39' rx='9' ry='2.4' fill='rgba(0,0,0,0.18)' />
+				{/* a sliver of the metal pin poking out under the skirt */}
+				<rect x='17.4' y='34' width='1.3' height='6.6' fill='#9a9a9a' />
+				<path d='M17.4 40 L18.7 40 L18 41.6 Z' fill='#777' />
 				{/* flared skirt resting on the card */}
 				<ellipse
 					cx='18'
@@ -711,7 +704,6 @@ const BoardNode = ({
 	pos,
 	z,
 	theme,
-	casual,
 	activeSkill,
 	onPointerDown,
 	onSkillHover,
@@ -720,7 +712,6 @@ const BoardNode = ({
 	pos: Pos;
 	z: number;
 	theme: string;
-	casual: boolean;
 	activeSkill: string | null;
 	onPointerDown: (e: React.PointerEvent) => void;
 	onSkillHover: (id: string | null) => void;
@@ -753,17 +744,16 @@ const BoardNode = ({
 				data-cursor='hover'
 				className={`${base} ${polaroidCls} w-[224px] p-3 pb-2`}
 				style={style}
-				title='click me'
 			>
 				<Pin id={item.id} />
 				<img
-					src={casual ? casualDhruv : dhruv}
+					src={avatar}
 					alt={profile.name}
 					draggable={false}
 					className='h-[210px] w-full object-cover'
 				/>
 				<p className='hand mt-1.5 text-center text-2xl leading-none text-[#2b343d]'>
-					{casual ? 'the real me 😄' : "hi, I'm Dhruv"}
+					hi, I'm Dhruv
 				</p>
 			</div>
 		);
@@ -774,17 +764,24 @@ const BoardNode = ({
 			<div
 				onPointerDown={onPointerDown}
 				data-cursor='hover'
-				className={`${base} ${polaroidCls} w-[196px] p-3 pb-2`}
+				className={`${base} ${polaroidCls} p-3 pb-2 ${
+					item.wide ? 'w-[280px]' : 'w-[196px]'
+				}`}
 				style={style}
 			>
 				<Pin id={item.id} />
-				<div className='h-[176px] w-full bg-black/5'>
+				<div
+					className={`w-full bg-black/5 ${
+						item.wide ? 'h-[176px]' : 'h-[176px]'
+					}`}
+				>
 					<img
 						src={item.src}
 						alt={item.caption}
 						draggable={false}
 						loading='lazy'
 						className='h-full w-full object-cover'
+						style={{ objectPosition: item.focus ?? 'center' }}
 					/>
 				</div>
 				<p className='hand mt-1.5 text-center text-xl leading-none text-[#2b343d]'>

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +22,7 @@ const Projects = () => {
 				title='Projects'
 			/>
 			<p className='mb-8 -mt-4 font-mono text-xs text-inkFaint'>
-				a few favourites — more always cooking 🍳
+				a few favourites · more always cooking 🍳
 			</p>
 
 			<div className='grid gap-6 sm:grid-cols-2'>
@@ -32,16 +31,12 @@ const Projects = () => {
 						!!activeSkill && !p.tech.includes(activeSkill);
 					const lit = !!activeSkill && p.tech.includes(activeSkill);
 					return (
-						<motion.a
+						<a
 							key={p.id}
 							href={p.link || p.github}
 							target='_blank'
 							rel='noopener noreferrer'
 							data-cursor='hover'
-							initial={{ opacity: 0, y: 30 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, margin: '-60px' }}
-							transition={{ duration: 0.45, delay: i * 0.06 }}
 							className={`group relative block overflow-hidden rounded-2xl border bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 hover:rotate-0 ${
 								tilts[i % tilts.length]
 							} ${
@@ -88,7 +83,7 @@ const Projects = () => {
 									))}
 								</div>
 							</div>
-						</motion.a>
+						</a>
 					);
 				})}
 			</div>

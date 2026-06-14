@@ -1,4 +1,10 @@
 import { experience, projects, skills } from '../../data/content';
+import gradPhoto from '../../assets/photos/grad.jpg';
+import crewPhoto from '../../assets/photos/crew.jpg';
+import tennisPhoto from '../../assets/photos/tennis.jpg';
+import weekendPhoto from '../../assets/photos/weekend.jpg';
+import canvaPhoto from '../../assets/photos/canva.jpg';
+import coastPhoto from '../../assets/photos/coast.jpg';
 
 export type BoardItem =
 	| { id: string; type: 'polaroid'; x: number; y: number; rot: number }
@@ -30,6 +36,10 @@ export type BoardItem =
 			rot: number;
 			src: string;
 			caption: string;
+			/** CSS object-position (e.g. 'center 28%') to nudge the framing */
+			focus?: string;
+			/** landscape polaroid (fits wide group photos) */
+			wide?: boolean;
 	  }
 	| {
 			id: string;
@@ -80,15 +90,21 @@ const grid = (
 	};
 };
 
-// placeholder photos via Lorem Picsum (stable per seed). Swap src for your own later.
-const photo = (seed: string) => `https://picsum.photos/seed/${seed}/420/420`;
-const PHOTOS: { seed: string; caption: string; x: number; y: number; rot: number }[] = [
-	{ seed: 'dhruv-grad', caption: 'we made it 🎓', x: 720, y: 100, rot: -5 },
-	{ seed: 'dhruv-coast', caption: 'perth coast 🌊', x: 80, y: 1215, rot: 2 },
-	{ seed: 'dhruv-code', caption: 'late nights ☕', x: 450, y: 1230, rot: -3 },
-	{ seed: 'dhruv-hike', caption: 'weekend escape ⛰️', x: 820, y: 1215, rot: 3 },
-	{ seed: 'dhruv-team', caption: 'the crew ✨', x: 1180, y: 1230, rot: -4 },
-	{ seed: 'dhruv-canva', caption: 'day 1 @ canva 🎨', x: 1470, y: 1180, rot: 3 },
+const PHOTOS: {
+	src: string;
+	caption: string;
+	x: number;
+	y: number;
+	rot: number;
+	focus?: string;
+	wide?: boolean;
+}[] = [
+	{ src: gradPhoto, caption: 'we made it 🎓', x: 720, y: 100, rot: -5 },
+	{ src: coastPhoto, caption: 'perth 🌆', x: 80, y: 1215, rot: 2 },
+	{ src: tennisPhoto, caption: 'court time 🎾', x: 450, y: 1230, rot: -3 },
+	{ src: weekendPhoto, caption: 'weekend escape 🌴', x: 820, y: 1215, rot: 3 },
+	{ src: crewPhoto, caption: 'the crew ✨', x: 1180, y: 1230, rot: -4 },
+	{ src: canvaPhoto, caption: 'canva 🎨', x: 1470, y: 1180, rot: 3 },
 ];
 
 export const buildItems = (): BoardItem[] => {
@@ -113,7 +129,7 @@ export const buildItems = (): BoardItem[] => {
 		id: 'lbl-proj',
 		type: 'label',
 		x: 1460,
-		y: 55,
+		y: 28,
 		rot: 2,
 		text: 'projects',
 		tone: 'jade',
@@ -121,7 +137,7 @@ export const buildItems = (): BoardItem[] => {
 	items.push({
 		id: 'lbl-skills',
 		type: 'label',
-		x: 1470,
+		x: 1560,
 		y: 702,
 		rot: -3,
 		text: 'skills',
@@ -160,11 +176,13 @@ export const buildItems = (): BoardItem[] => {
 		items.push({
 			id: `photo-${i}`,
 			type: 'photo',
-			src: photo(p.seed),
+			src: p.src,
 			caption: p.caption,
 			x: p.x,
 			y: p.y,
 			rot: p.rot,
+			focus: p.focus,
+			wide: p.wide,
 		})
 	);
 

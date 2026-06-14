@@ -3,8 +3,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faFileLines } from '@fortawesome/free-solid-svg-icons';
-import dhruv from '../assets/dhruv.png';
-import casualDhruv from '../assets/casual_dhruv.jpg';
+import avatar from '../assets/avatar.jpg';
+import avatarAI from '../assets/avatar-2.jpg';
 import { profile } from '../data/content';
 
 /* ---- cycling typewriter for the role line ---- */
@@ -102,14 +102,15 @@ const Hero = () => {
 						className='font-mono text-sm text-rose mb-4'
 					>
 						<span className='text-inkFaint'>{'// '}</span>hello,
-						world — I'm
+						world. I'm
 					</motion.p>
 
 					<motion.h1
 						variants={item}
 						className='font-display font-bold tracking-tight text-ink leading-[1.02] text-[clamp(2.6rem,8vw,5.2rem)]'
 					>
-						{profile.first}.
+						{profile.first}
+						<span className='text-rose'>.</span>
 					</motion.h1>
 
 					<motion.div
@@ -197,16 +198,16 @@ const Hero = () => {
 						<button
 							onClick={onPortraitClick}
 							data-cursor='hover'
-							title='psst — click me'
+							title='psst, click me'
 							className='relative block overflow-hidden rounded-[1.6rem] border border-line bg-surface shadow-card float-bob'
 						>
 							<img
-								src={casual ? casualDhruv : dhruv}
+								src={casual ? avatarAI : avatar}
 								alt={profile.name}
 								className='h-[260px] w-[260px] sm:h-[320px] sm:w-[320px] object-cover transition-all duration-500'
 							/>
 							<span className='pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-ink/80 px-3 py-1 font-mono text-[11px] text-bg backdrop-blur'>
-								{casual ? 'the real one 😄' : 'click me'}
+								click me
 							</span>
 						</button>
 					</div>
