@@ -26,6 +26,8 @@ const VIEW_KEY = 'dj-view';
 
 const getInitialView = (): View => {
 	if (typeof window === 'undefined') return 'tidy';
+	const q = new URLSearchParams(window.location.search).get('view');
+	if (q === 'board' || q === 'tidy') return q;
 	const saved = window.localStorage.getItem(VIEW_KEY);
 	if (saved === 'board' || saved === 'tidy') return saved;
 	const desktopPointer =

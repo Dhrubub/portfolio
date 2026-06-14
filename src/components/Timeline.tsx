@@ -1,10 +1,4 @@
-import {
-	useCallback,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-	useState,
-} from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -31,18 +25,11 @@ const Timeline = () => {
 	const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const [fillPx, setFillPx] = useState(0);
 	const [listH, setListH] = useState(1);
-	const [dotTops, setDotTops] = useState<number[]>([]);
-	const [dragging, setDragging] = useState(false);
+	const [reachedArr, setReachedArr] = useState<boolean[]>([]);
 
 	const measure = useCallback(() => {
 		const list = listRef.current;
-		if (!list) return;
-		setListH(list.offsetHeight);
-		setDotTops(
-			dotRefs.current.map((d) =>
-				d ? d.offsetTop + d.offsetHeight / 2 : 0
-			)
-		);
+		if (list) setListH(list.offsetHeight);
 	}, []);
 
 	useLayoutEffect(() => {
@@ -57,33 +44,14 @@ const Timeline = () => {
 		const rect = list.getBoundingClientRect();
 		const playhead = window.innerHeight * THRESHOLD;
 		setFillPx(Math.min(rect.height, Math.max(0, playhead - rect.top)));
+		setReachedArr(
+			dotRefs.current.map(
+				(d) =>
+					!!d &&
+					d.getBoundingClientRect().top + d.offsetHeight / 2 <= playhead
+			)
+		);
 	});
-
-	// draggable playhead → maps pointer Y over the list to window scroll
-	useEffect(() => {
-		if (!dragging) return;
-		const onMove = (e: PointerEvent) => {
-			const list = listRef.current;
-			if (!list) return;
-			const rect = list.getBoundingClientRect();
-			const ratio = Math.min(
-				1,
-				Math.max(0, (e.clientY - rect.top) / rect.height)
-			);
-			const docTop = rect.top + window.scrollY;
-			const playhead = window.innerHeight * THRESHOLD;
-			window.scrollTo({ top: docTop - playhead + ratio * rect.height });
-		};
-		const stop = () => setDragging(false);
-		window.addEventListener('pointermove', onMove);
-		window.addEventListener('pointerup', stop);
-		document.body.style.userSelect = 'none';
-		return () => {
-			window.removeEventListener('pointermove', onMove);
-			window.removeEventListener('pointerup', stop);
-			document.body.style.userSelect = '';
-		};
-	}, [dragging]);
 
 	const fillRatio = listH > 0 ? Math.min(1, fillPx / listH) : 0;
 
@@ -91,42 +59,20 @@ const Timeline = () => {
 		<div>
 			<ol ref={listRef} className='relative'>
 				{/* rail overlay */}
-				<div className='pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-10'>
+				<div className='pointer-events-none absolute left-0 top-0 bottom-0 z-0 w-10 sm:w-12'>
 					<span className='absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-line' />
 					<span
 						className='absolute left-1/2 top-2 w-[2px] -translate-x-1/2 rounded-full bg-rose'
 						style={{
 							height: `max(0px, calc(${fillRatio * 100}% - 1rem))`,
-							transition: dragging
-								? 'none'
-								: 'height 0.1s linear',
 						}}
 					/>
 				</div>
 
-				{/* draggable playhead */}
-				<button
-					data-cursor='hover'
-					aria-label='Drag to scrub through time'
-					title='drag me to scrub'
-					onPointerDown={(e) => {
-						e.preventDefault();
-						setDragging(true);
-					}}
-					className='absolute left-4 sm:left-5 z-20 grid -translate-x-1/2 -translate-y-1/2 place-items-center'
-					style={{ top: `${fillRatio * 100}%` }}
-				>
-					<span
-						className={`block rounded-full bg-rose shadow-card ring-4 ring-rose/20 transition-all ${
-							dragging ? 'h-5 w-5' : 'h-4 w-4'
-						}`}
-					/>
-				</button>
-
 				<div className='space-y-7 sm:space-y-9'>
 					{visible.map((item, i) => {
 						const reached =
-							dotTops[i] !== undefined && fillPx >= dotTops[i];
+							reachedArr[i] ?? false;
 						const dimmed =
 							!!activeSkill && !item.tech.includes(activeSkill);
 						const lit =
@@ -138,23 +84,23 @@ const Timeline = () => {
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, margin: '-60px' }}
 								transition={{ duration: 0.45, ease: 'easeOut' }}
-								className='grid grid-cols-[2rem_1fr] sm:grid-cols-[2.5rem_1fr] gap-x-4 sm:gap-x-6'
+								className='grid grid-cols-[2.5rem_1fr] sm:grid-cols-[3rem_1fr] gap-x-4 sm:gap-x-6'
 							>
 								{/* dot */}
 								<div
 									ref={(el) => (dotRefs.current[i] = el)}
-									className='flex justify-center pt-1.5'
+									className='relative z-10 flex justify-center pt-1.5'
 								>
 									<span
-										className={`grid h-7 w-7 sm:h-8 sm:w-8 place-items-center rounded-full border transition-all duration-300 ${
+										className={`grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-full bg-bg transition-[color,transform] duration-100 ${
 											reached
-												? 'border-rose bg-rose text-surface'
-												: 'border-line bg-surface text-inkFaint scale-90'
+												? 'text-rose'
+												: 'text-inkFaint scale-90'
 										}`}
 									>
 										<FontAwesomeIcon
 											icon={item.icon}
-											className='text-[10px] sm:text-[11px]'
+											className='text-base sm:text-lg'
 										/>
 									</span>
 								</div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -197,6 +197,128 @@ body {
 .dot-grid {
 	background-image: radial-gradient(var(--line) 1px, transparent 1px);
 	background-size: 22px 22px;
+}
+
+/* ---------------- corkboard ---------------- */
+.cork-board {
+	background-color: #bd9655;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' opacity='0.6'/%3E%3C/svg%3E"),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' seed='29'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.25'/%3E%3C/svg%3E"),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='2' seed='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='520' height='520' filter='url(%23b)' opacity='0.35'/%3E%3C/svg%3E");
+	background-blend-mode: multiply, screen, multiply;
+}
+[data-theme='dark'] .cork-board {
+	background-color: #735c38;
+}
+
+/* ---- light natural-wood / bamboo frame: smooth, soft bevel, minimal grain ---- */
+.wood-h {
+	background-image: linear-gradient(
+		180deg,
+		#f4e7c6 0%,
+		#ead9b0 50%,
+		#dec999 100%
+	);
+}
+.wood-v {
+	background-image: linear-gradient(
+		90deg,
+		#f4e7c6 0%,
+		#ead9b0 50%,
+		#dec999 100%
+	);
+}
+[data-theme='dark'] .wood-h {
+	background-image: linear-gradient(180deg, #c9ad79, #b2935f 60%, #9c7e4d);
+}
+[data-theme='dark'] .wood-v {
+	background-image: linear-gradient(90deg, #c9ad79, #b2935f 60%, #9c7e4d);
+}
+
+/* frame rails — grain runs the long way on each (h = top/bottom, v = sides) */
+.frame-grain-h {
+	background-color: #e6d2a1;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='80'%3E%3Cfilter id='fh'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.85' numOctaves='4' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='80' filter='url(%23fh)' opacity='0.9'/%3E%3C/svg%3E"),
+		linear-gradient(180deg, #f3e4c2, #e6d2a1 45%, #d6bd87);
+	background-blend-mode: overlay, normal;
+}
+.frame-grain-v {
+	background-color: #e6d2a1;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='260'%3E%3Cfilter id='fv'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85 0.008' numOctaves='4' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='80' height='260' filter='url(%23fv)' opacity='0.9'/%3E%3C/svg%3E"),
+		linear-gradient(90deg, #f3e4c2, #e6d2a1 45%, #d6bd87);
+	background-blend-mode: overlay, normal;
+}
+[data-theme='dark'] .frame-grain-h,
+[data-theme='dark'] .frame-grain-v {
+	filter: brightness(0.82);
+}
+
+/* tape strip */
+.tape {
+	position: absolute;
+	top: -9px;
+	left: 50%;
+	width: 72px;
+	height: 22px;
+	transform: translateX(-50%) rotate(-4deg);
+	background: linear-gradient(
+		180deg,
+		rgba(244, 240, 214, 0.55),
+		rgba(225, 220, 190, 0.45)
+	);
+	border-left: 1px solid rgba(255, 255, 255, 0.4);
+	border-right: 1px solid rgba(0, 0, 0, 0.06);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+	z-index: 6;
+	pointer-events: none;
+}
+
+/* polaroid paper — stays warm-white in both themes */
+.polaroid {
+	background: #f8f5ec;
+	color: #2b343d;
+}
+
+/* masking-tape label */
+.tape-label {
+	position: relative;
+	display: inline-block;
+	padding: 7px 22px;
+	background: rgba(228, 219, 188, 0.82);
+	color: #4f3f2a;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+	border-left: 1px solid rgba(255, 255, 255, 0.35);
+	border-right: 1px solid rgba(0, 0, 0, 0.08);
+	clip-path: polygon(
+		2% 8%, 30% 0, 62% 6%, 99% 2%,
+		98% 92%, 66% 100%, 28% 95%, 1% 99%
+	);
+}
+.tape-label::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		90deg,
+		transparent 0 9px,
+		rgba(0, 0, 0, 0.03) 9px 10px
+	);
+}
+
+/* skills sheet — a piece of grid/notepad paper, not a cork board */
+.board-paper {
+	background-color: #f7f2e4;
+	color: #2b343d;
+	background-image: linear-gradient(
+			rgba(90, 110, 120, 0.08) 1px,
+			transparent 1px
+		),
+		linear-gradient(90deg, rgba(90, 110, 120, 0.08) 1px, transparent 1px);
+	background-size: 28px 28px;
+}
+
+.hand {
+	font-family: 'Caveat', cursive;
 }
 
 /* reduced motion: turn off the decorative loops */
