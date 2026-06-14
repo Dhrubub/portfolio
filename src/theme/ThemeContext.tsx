@@ -21,6 +21,8 @@ const STORAGE_KEY = 'dj-theme';
 
 const getInitial = (): ThemeMode => {
 	if (typeof window === 'undefined') return 'light';
+	const q = new URLSearchParams(window.location.search).get('theme');
+	if (q === 'light' || q === 'dark') return q;
 	const saved = window.localStorage.getItem(STORAGE_KEY);
 	if (saved === 'light' || saved === 'dark') return saved;
 	return window.matchMedia('(prefers-color-scheme: dark)').matches
