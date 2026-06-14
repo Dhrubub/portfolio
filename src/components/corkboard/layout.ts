@@ -21,6 +21,15 @@ export type BoardItem =
 	| { id: string; type: 'contact'; x: number; y: number; rot: number }
 	| {
 			id: string;
+			type: 'note';
+			x: number;
+			y: number;
+			rot: number;
+			title: string;
+			lines: string[];
+	  }
+	| {
+			id: string;
 			type: 'skillboard';
 			x: number;
 			y: number;
@@ -99,12 +108,12 @@ const PHOTOS: {
 	focus?: string;
 	wide?: boolean;
 }[] = [
-	{ src: gradPhoto, caption: 'we made it 🎓', x: 720, y: 100, rot: -5 },
-	{ src: coastPhoto, caption: 'perth 🌆', x: 80, y: 1215, rot: 2 },
-	{ src: tennisPhoto, caption: 'court time 🎾', x: 450, y: 1230, rot: -3 },
-	{ src: weekendPhoto, caption: 'weekend escape 🌴', x: 820, y: 1215, rot: 3 },
-	{ src: crewPhoto, caption: 'the crew ✨', x: 1180, y: 1230, rot: -4 },
-	{ src: canvaPhoto, caption: 'canva 🎨', x: 1470, y: 1180, rot: 3 },
+	{ src: gradPhoto, caption: 'we made it 🎓', x: 720, y: 140, rot: -5 },
+	{ src: coastPhoto, caption: 'perth 🌆', x: 90, y: 1215, rot: 2 },
+	{ src: tennisPhoto, caption: 'court time 🎾', x: 462, y: 1230, rot: -3 },
+	{ src: weekendPhoto, caption: 'weekend escape 🌴', x: 835, y: 1215, rot: 3 },
+	{ src: crewPhoto, caption: 'the crew ✨', x: 1208, y: 1230, rot: -4 },
+	{ src: canvaPhoto, caption: 'canva 🎨', x: 1580, y: 1180, rot: 3 },
 ];
 
 export const buildItems = (): BoardItem[] => {
@@ -114,6 +123,21 @@ export const buildItems = (): BoardItem[] => {
 	items.push({ id: 'me', type: 'polaroid', x: 70, y: 95, rot: -4 });
 	items.push({ id: 'bio', type: 'bio', x: 340, y: 90, rot: 2 });
 	items.push({ id: 'contact', type: 'contact', x: 1080, y: 80, rot: 3 });
+
+	// "currently" note (learning + hobbies) — fills the cork under contact
+	items.push({
+		id: 'currently',
+		type: 'note',
+		x: 1085,
+		y: 265,
+		rot: -2,
+		title: '// currently',
+		lines: [
+			'🎨 learning to draw',
+			'🤸 working on a handstand',
+			'🏋️ hitting the gym',
+		],
+	});
 
 	// labels
 	items.push({
@@ -137,7 +161,7 @@ export const buildItems = (): BoardItem[] => {
 	items.push({
 		id: 'lbl-skills',
 		type: 'label',
-		x: 1560,
+		x: 1540,
 		y: 702,
 		rot: -3,
 		text: 'skills',

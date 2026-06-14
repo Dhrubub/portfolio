@@ -894,6 +894,33 @@ const BoardNode = ({
 		);
 	}
 
+	if (item.type === 'note') {
+		return (
+			<div
+				onPointerDown={onPointerDown}
+				data-cursor='hover'
+				className={`${base} flex min-h-[230px] w-[250px] cursor-grab flex-col rounded-[2px] p-5 shadow-[2px_4px_9px_rgba(0,0,0,0.24)]`}
+				style={{
+					...style,
+					backgroundColor: '#fbf0a0',
+					color: '#4a4322',
+				}}
+			>
+				<p
+					className='font-mono text-xs'
+					style={{ color: '#a07f2c' }}
+				>
+					{item.title}
+				</p>
+				<ul className='hand mt-2 space-y-1.5 text-2xl leading-snug'>
+					{item.lines.map((l, i) => (
+						<li key={i}>{l}</li>
+					))}
+				</ul>
+			</div>
+		);
+	}
+
 	if (item.type === 'exp') {
 		const e = expById[item.refId];
 		if (!e) return null;

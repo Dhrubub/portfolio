@@ -179,20 +179,6 @@ body {
 	animation: wiggle 0.4s ease-in-out;
 }
 
-/* tape / sticker flourish for cards */
-.tape::before {
-	content: '';
-	position: absolute;
-	top: -10px;
-	left: 50%;
-	transform: translateX(-50%) rotate(-3deg);
-	width: 64px;
-	height: 20px;
-	background: color-mix(in srgb, var(--jade) 30%, transparent);
-	border: 1px dashed var(--line-strong);
-	border-radius: 2px;
-}
-
 /* dotted grid background flourish */
 .dot-grid {
 	background-image: radial-gradient(var(--line) 1px, transparent 1px);
@@ -263,8 +249,8 @@ body {
 	transform: translateX(-50%) rotate(-4deg);
 	background: linear-gradient(
 		180deg,
-		rgba(244, 240, 214, 0.55),
-		rgba(225, 220, 190, 0.45)
+		rgba(238, 232, 200, 0.92),
+		rgba(223, 216, 182, 0.88)
 	);
 	border-left: 1px solid rgba(255, 255, 255, 0.4);
 	border-right: 1px solid rgba(0, 0, 0, 0.06);
