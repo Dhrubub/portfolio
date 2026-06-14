@@ -5,6 +5,7 @@ import {
 	faMoon,
 	faBars,
 	faXmark,
+	faThumbtack,
 } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../theme/ThemeContext';
 import { profile } from '../data/content';
@@ -75,7 +76,8 @@ const Navbar = () => {
 						data-cursor='hover'
 						className='hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-inkSoft transition-colors hover:border-rose hover:text-rose sm:flex'
 					>
-						📌 <span>board</span>
+						<FontAwesomeIcon icon={faThumbtack} className='rotate-45 text-xs' />
+					<span>board</span>
 					</button>
 
 					{/* command palette trigger */}
