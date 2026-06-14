@@ -1,170 +1,145 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faSun,
 	faMoon,
 	faBars,
-	faTimes,
-	faCog,
+	faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import Experiment from './Experiment';
+import { useTheme } from '../theme/ThemeContext';
+import { profile } from '../data/content';
 
-export const navLinks = [
-	{
-		id: 'about',
-		title: 'About',
-	},
-	{
-		id: 'experience',
-		title: 'Experience',
-	},
-	{
-		id: 'projects',
-		title: 'Projects',
-	},
-	{
-		id: 'contact',
-		title: 'Contact',
-	},
+const links = [
+	{ id: 'experience', label: 'Experience' },
+	{ id: 'projects', label: 'Projects' },
+	{ id: 'skills', label: 'Skills' },
+	{ id: 'contact', label: 'Contact' },
 ];
 
-type NavbarProps = {
-	isDarkMode: boolean;
-	toggleDarkMode: () => void;
-};
-
-const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
-	const [darkMode, setDarkMode] = useState(isDarkMode);
-	const [hasSideBarOpened, setHasSideBarOpened] = useState(false);
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-	const [isCustomThemeOpen, setIsCustomThemeOpen] = useState(false);
-
-	const sidebarContainerRef = useRef<HTMLDivElement>(null);
+const Navbar = () => {
+	const { theme, toggle } = useTheme();
+	const [scrolled, setScrolled] = useState(false);
+	const [menu, setMenu] = useState(false);
 
 	useEffect(() => {
-		const handleClickOutside = (event: { target: any }) => {
-			if (
-				sidebarContainerRef.current &&
-				!sidebarContainerRef.current.contains(event.target)
-			) {
-				setIsSidebarOpen(false);
-			}
-		};
-
-		document.addEventListener('click', handleClickOutside);
-
-		return () => {
-			document.removeEventListener('click', handleClickOutside);
-		};
+		const onScroll = () => setScrolled(window.scrollY > 12);
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		return () => window.removeEventListener('scroll', onScroll);
 	}, []);
 
-	useEffect(() => {
-		setDarkMode(isDarkMode);
-	}, [isDarkMode]);
-
-	const handleToggleDarkMode = () => {
-		setDarkMode((prev) => !prev);
-		toggleDarkMode();
-	};
+	const openPalette = () => window.dispatchEvent(new Event('cmdk:open'));
+	const openBoard = () =>
+		window.dispatchEvent(
+			new CustomEvent('dj:set-view', { detail: 'board' })
+		);
 
 	return (
-		<nav className='w-full flex py-4 min-h-[64px] justify-center items-center navbar'>
-			<span className='text-secondary text-[16px]'>Dhruv Jobanputra</span>
-			<ul className='list-none sm:flex hidden justify-end items-center flex-1'>
-				{navLinks.map((nav) => (
-					<li
-						key={nav.id}
-						className={`font-poppins font-normal cursor-pointer text-[16px] text-secondary mr-10`}
-					>
-						<a href={`#${nav.id}`}>{nav.title}</a>
-					</li>
-				))}
-				<button onClick={handleToggleDarkMode}>
-					<FontAwesomeIcon
-						icon={darkMode ? faMoon : faSun}
-						className={`w-[20px] h-[20px] text-secondary mt-1 cursor-pointer mr-5`}
-					/>
-				</button>
-				{/* <button
-					onClick={() => {
-						setIsCustomThemeOpen((prev) => !prev);
-					}}
+		<header
+			className={`sticky top-0 z-40 transition-colors duration-300 ${
+				scrolled
+					? 'border-b border-line bg-bg/80 backdrop-blur-md'
+					: 'border-b border-transparent'
+			}`}
+		>
+			<nav className='mx-auto flex max-w-5xl items-center justify-between px-6 py-4 sm:px-10'>
+				<a
+					href='#home'
+					data-cursor='hover'
+					className='group font-display text-base font-bold text-ink'
 				>
-					<FontAwesomeIcon
-						icon={faCog}
-						className={`w-[20px] h-[20px] text-secondary mt-1 cursor-pointer`}
-					/>
-				</button> */}
-			</ul>
+					{profile.first}
+					<span className='text-rose transition-all group-hover:ml-1'>
+						.
+					</span>
+				</a>
 
-			{isSidebarOpen && (
-				<div className='fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 z-10'></div>
-			)}
-
-			{/* {isCustomThemeOpen && (
-				<div className='z-10'>
-					<Experiment
-						close={() => setIsCustomThemeOpen((prev) => !prev)}
-					/>
-				</div>
-			)} */}
-
-			<div
-				className='sm:hidden flex flex-1 justify-end items-center z-[11]'
-				ref={sidebarContainerRef}
-			>
-				<FontAwesomeIcon
-					icon={darkMode ? faMoon : faSun}
-					className={`w-[20px] h-[20px] text-secondary mr-6 cursor-pointer`}
-					onClick={handleToggleDarkMode}
-				/>
-
-				{/* <FontAwesomeIcon
-					icon={faCog}
-					className={`w-[20px] h-[20px] text-secondary mr-6 cursor-pointer`}
-					onClick={() => {
-						setIsCustomThemeOpen((prev) => !prev);
-					}}
-				/> */}
-
-				<FontAwesomeIcon
-					icon={isSidebarOpen ? faTimes : faBars}
-					className={`w-[20px] h-[20px] text-secondary cursor-pointer`}
-					onClick={() => {
-						setHasSideBarOpened(true);
-						setIsSidebarOpen((prev) => !prev);
-					}}
-				/>
-
-				<div
-					className={`
-						${hasSideBarOpened ? 'duration-500' : ''}
-						${
-							isSidebarOpen
-								? 'flex translate-x-0'
-								: 'translate-x-full '
-						} p-6 bg-primary fixed top-0 right-0 min-w-[180px] h-full ease-in-out shadow-inner`}
-				>
-					<ul className='list-none flex flex-col justify-start items-start flex-1'>
-						{navLinks.map((nav) => (
-							<li
-								key={nav.id}
-								className={`cursor-pointer text-[16px] text-secondary mb-4`}
-							>
+				<div className='flex items-center gap-1 sm:gap-2'>
+					<ul className='mr-1 hidden items-center gap-1 sm:flex'>
+						{links.map((l) => (
+							<li key={l.id}>
 								<a
-									href={`#${nav.id}`}
-									onClick={() =>
-										setIsSidebarOpen((prev) => !prev)
-									}
+									href={`#${l.id}`}
+									data-cursor='hover'
+									className='rounded-lg px-3 py-2 text-sm text-inkSoft transition-colors hover:text-rose'
 								>
-									{nav.title}
+									{l.label}
 								</a>
 							</li>
 						))}
 					</ul>
+
+					{/* board view */}
+					<button
+						onClick={openBoard}
+						data-cursor='hover'
+						className='hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-inkSoft transition-colors hover:border-rose hover:text-rose sm:flex'
+					>
+						🧷 <span>board</span>
+					</button>
+
+					{/* command palette trigger */}
+					<button
+						onClick={openPalette}
+						data-cursor='hover'
+						aria-label='Open command palette'
+						className='hidden items-center gap-2 rounded-lg border border-line bg-surface px-2.5 py-1.5 text-inkFaint transition-colors hover:border-rose hover:text-rose sm:flex'
+					>
+						<span className='font-mono text-xs'>⌘K</span>
+					</button>
+
+					{/* theme toggle */}
+					<button
+						onClick={toggle}
+						data-cursor='hover'
+						aria-label='Toggle theme'
+						className='wiggle-on-hover grid h-9 w-9 place-items-center rounded-lg border border-line bg-surface text-ink transition-colors hover:border-rose hover:text-rose'
+					>
+						<FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} />
+					</button>
+
+					{/* mobile menu */}
+					<button
+						onClick={() => setMenu((p) => !p)}
+						data-cursor='hover'
+						aria-label='Menu'
+						className='grid h-9 w-9 place-items-center rounded-lg border border-line bg-surface text-ink sm:hidden'
+					>
+						<FontAwesomeIcon icon={menu ? faXmark : faBars} />
+					</button>
 				</div>
-			</div>
-		</nav>
+			</nav>
+
+			{/* mobile dropdown */}
+			{menu && (
+				<div className='border-t border-line bg-bg px-6 py-3 sm:hidden'>
+					<ul className='flex flex-col gap-1'>
+						{links.map((l) => (
+							<li key={l.id}>
+								<a
+									href={`#${l.id}`}
+									onClick={() => setMenu(false)}
+									className='block rounded-lg px-2 py-2 text-inkSoft hover:text-rose'
+								>
+									{l.label}
+								</a>
+							</li>
+						))}
+						<li>
+							<button
+								onClick={() => {
+									setMenu(false);
+									openPalette();
+								}}
+								className='block w-full rounded-lg px-2 py-2 text-left font-mono text-sm text-inkFaint'
+							>
+								⌘K · command palette
+							</button>
+						</li>
+					</ul>
+				</div>
+			)}
+		</header>
 	);
 };
 

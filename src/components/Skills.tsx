@@ -1,100 +1,119 @@
-import styles from '../style';
+import { useMemo } from 'react';
+import { motion } from 'framer-motion';
+import SectionHeading from './SectionHeading';
 import {
-	react,
-	angular,
-	vue,
-	django,
-	android,
-	unity,
-	ros,
-	jupyter,
-	aws,
-	git,
-	js,
-	ts,
-	cpp,
-	java,
-	python,
-	r,
-	html,
-	css,
-	latex,
-	dark_aws,
-	dark_django,
-	dark_jupyter,
-	dark_latex,
-	dark_ros,
-	dark_unity,
-} from './index';
+	skills,
+	skillUsage,
+	experience,
+	projects,
+} from '../data/content';
+import { useHighlight } from '../context/HighlightContext';
+import { useTheme } from '../theme/ThemeContext';
 
-const Skills = ({ darkMode }) => {
-	const items = [
-		{ icon: js, name: 'JavaScript' },
-		{ icon: ts, name: 'TypeScript' },
-		{ icon: cpp, name: 'C++' },
-		{ icon: java, name: 'Java' },
-		{ icon: python, name: 'Python' },
-		{ icon: html, name: 'HTML' },
-		{ icon: r, name: 'R' },
-		{ icon: react, name: 'React' },
-		{ icon: angular, name: 'Angular' },
-		{ icon: vue, name: 'Vue' },
-		{ icon: darkMode ? dark_django : django, name: 'Django' },
-		{ icon: git, name: 'Git' },
-		{ icon: android, name: 'Android Studio' },
-		{
-			icon: darkMode ? dark_unity : unity,
-			name: 'Unity',
-		},
-		{ icon: darkMode ? dark_ros : ros, name: 'ROS' },
-		{
-			icon: darkMode ? dark_jupyter : jupyter,
-			name: 'Jupyter',
-		},
-		{ icon: darkMode ? dark_aws : aws, name: 'AWS' },
-		{
-			icon: darkMode ? dark_latex : latex,
-			name: 'Latex',
-		},
-	];
+const Skills = () => {
+	const { theme } = useTheme();
+	const { activeSkill, setActiveSkill } = useHighlight();
+
+	// lookups for the "used in" readout
+	const orgById = useMemo(() => {
+		const m: Record<string, string> = {};
+		experience.forEach((e) => (m[e.id] = e.org));
+		return m;
+	}, []);
+	const projById = useMemo(() => {
+		const m: Record<string, string> = {};
+		projects.forEach((p) => (m[p.id] = p.title));
+		return m;
+	}, []);
+
+	const active = skills.find((s) => s.id === activeSkill);
+	const usage = activeSkill ? skillUsage[activeSkill] : null;
+	const usedOrgs = usage
+		? Array.from(new Set(usage.exp.map((id) => orgById[id]).filter(Boolean)))
+		: [];
+	const usedProjects = usage
+		? usage.proj.map((id) => projById[id]).filter(Boolean)
+		: [];
 
 	return (
-		<section id='skills' className='my-6'>
-			<div className='w-fit m-auto my-3 sm:my-6 px-3'>
-				<h1 className='mb-1 px-4 font-semibold text-center text-tertiary text-[24px] sm:text-[48px]'>
-					Skills
-				</h1>
-				<div className='sm:w-[300px] w-full border-t-[1px] border-t-tertiary opacity-75'></div>
-			</div>
-			<div
-				className={`sm:px-16 ss:px-6 flex flex-1 justify-center items-center max-w-[800px] m-auto`}
-			>
-				<div className='rounded-lg w-full justify-center items-center grid grid-cols-6 gap-4 p-4'>
-					{items.map((item, index) => (
-						<span
-							key={index}
-							className='flex flex-col items-center'
-						>
-							<div className='min-h-[60px] justify-center flex'>
-								<img
-									className={`
-									md:w-[50px] ss:w-[45px] w-[35px] m-auto ${
-										item.name.toLowerCase() in
-										['django', 'latex']
-											? 'md:h-[50px] ss:h-[45px] h-[35px]'
-											: ''
-									}`}
-									src={item.icon}
-									alt={item.name}
-									title={item.name}
-								/>
-							</div>
-							<span className='text-[12px] hidden ss:block text-secondary text-center'>
-								{item.name}
+		<section
+			id='skills'
+			className='mx-auto max-w-5xl px-6 py-16 sm:px-10 sm:py-24 scroll-mt-20'
+		>
+			<SectionHeading
+				index='03'
+				kicker='// the toolbox'
+				title='Skills'
+			/>
+
+			{/* readout */}
+			<div className='mb-6 min-h-[2.5rem] font-mono text-sm'>
+				{active ? (
+					<motion.p
+						key={active.id}
+						initial={{ opacity: 0, y: 6 }}
+						animate={{ opacity: 1, y: 0 }}
+						className='text-inkSoft'
+					>
+						<span className='text-rose'>{active.label}</span>
+						{usedOrgs.length || usedProjects.length ? (
+							<>
+								{' '}— used at{' '}
+								<span className='text-ink'>
+									{[...usedOrgs, ...usedProjects].join(', ')}
+								</span>
+							</>
+						) : (
+							<span className='text-inkFaint'>
+								{' '}— a trusty sidekick
 							</span>
-						</span>
-					))}
-				</div>
+						)}
+					</motion.p>
+				) : (
+					<p className='text-inkFaint'>
+						hover a skill to see where it shows up ↑ in my timeline
+						&amp; projects
+					</p>
+				)}
+			</div>
+
+			<div className='flex flex-wrap gap-3'>
+				{skills.map((skill, i) => {
+					const icon =
+						theme === 'dark' && skill.iconDark
+							? skill.iconDark
+							: skill.icon;
+					const isActive = activeSkill === skill.id;
+					const dimmed = activeSkill && !isActive;
+					return (
+						<motion.button
+							key={skill.id}
+							data-cursor='hover'
+							initial={{ opacity: 0, y: 14 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.3, delay: i * 0.02 }}
+							onMouseEnter={() => setActiveSkill(skill.id)}
+							onMouseLeave={() => setActiveSkill(null)}
+							onFocus={() => setActiveSkill(skill.id)}
+							onBlur={() => setActiveSkill(null)}
+							className={`group flex items-center gap-2.5 rounded-xl border bg-surface px-3.5 py-2.5 transition-all duration-200 ${
+								isActive
+									? 'border-rose ring-2 ring-rose/30 -translate-y-0.5'
+									: 'border-line hover:border-rose'
+							} ${dimmed ? 'opacity-40' : 'opacity-100'}`}
+						>
+							<img
+								src={icon}
+								alt={skill.label}
+								className='h-6 w-6 object-contain transition-transform group-hover:scale-110'
+							/>
+							<span className='text-sm font-medium text-ink'>
+								{skill.label}
+							</span>
+						</motion.button>
+					);
+				})}
 			</div>
 		</section>
 	);

@@ -1,43 +1,29 @@
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { useRafScroll } from '../hooks/useScroll';
 
 const ScrollToTop = () => {
-	const [shouldShowScrollToTop, setShouldShowScrollToTop] = useState(false);
+	const [show, setShow] = useState(false);
+	useRafScroll((y) => setShow(y > 400));
 
-	const handleScroll = () => {
-		const scrollTop =
-			window.pageYOffset || document.documentElement.scrollTop;
-		const scrollThreshold = 200; // Adjust this value as needed
-
-		setShouldShowScrollToTop(scrollTop > scrollThreshold);
-	};
-
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
-	};
-
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
 	return (
-		<div
-			className={`z-[10] fixed bottom-[20px] right-[20px] w-[40px] h-[40px] bg-gray-900
-     text-white flex justify-center items-center cursor-pointer rounded-full
-      opacity-0 transition-opacity duration-300 ${
-			shouldShowScrollToTop ? 'opacity-100' : ''
-		}`}
-			onClick={scrollToTop}
-		>
-			<FontAwesomeIcon icon={faArrowUp} />
-		</div>
+		<AnimatePresence>
+			{show && (
+				<motion.button
+					data-cursor='hover'
+					initial={{ opacity: 0, scale: 0.6, y: 10 }}
+					animate={{ opacity: 1, scale: 1, y: 0 }}
+					exit={{ opacity: 0, scale: 0.6, y: 10 }}
+					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+					aria-label='Scroll to top'
+					className='fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-lineStrong bg-surface text-ink shadow-card transition-colors hover:border-rose hover:text-rose'
+				>
+					<FontAwesomeIcon icon={faArrowUp} />
+				</motion.button>
+			)}
+		</AnimatePresence>
 	);
 };
 
