@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -24,21 +24,9 @@ const Timeline = () => {
 	const listRef = useRef<HTMLOListElement>(null);
 	const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const [fillPx, setFillPx] = useState(0);
-	const [listH, setListH] = useState(1);
 	const [reachedArr, setReachedArr] = useState<boolean[]>([]);
 
-	const measure = useCallback(() => {
-		const list = listRef.current;
-		if (list) setListH(list.offsetHeight);
-	}, []);
-
-	useLayoutEffect(() => {
-		measure();
-		window.addEventListener('resize', measure);
-		return () => window.removeEventListener('resize', measure);
-	}, [measure, visible.length]);
-
-	useRafScroll(() => {
+	const recompute = () => {
 		const list = listRef.current;
 		if (!list) return;
 		const rect = list.getBoundingClientRect();
@@ -46,26 +34,35 @@ const Timeline = () => {
 		setFillPx(Math.min(rect.height, Math.max(0, playhead - rect.top)));
 		setReachedArr(
 			dotRefs.current.map(
-				(d) =>
-					!!d &&
-					d.getBoundingClientRect().top + d.offsetHeight / 2 <= playhead
+				// colour the icon as soon as the fill line reaches its top edge
+				(d) => !!d && d.getBoundingClientRect().top + 8 <= playhead
 			)
 		);
-	});
+	};
+	const recomputeRef = useRef(recompute);
+	recomputeRef.current = recompute;
 
-	const fillRatio = listH > 0 ? Math.min(1, fillPx / listH) : 0;
+	useRafScroll(() => recomputeRef.current());
+
+	// keep the fill correct on resize/expand even without scrolling
+	useEffect(() => {
+		const onResize = () => recomputeRef.current();
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
+	useEffect(() => {
+		recomputeRef.current();
+	}, [expanded]);
 
 	return (
 		<div>
 			<ol ref={listRef} className='relative'>
-				{/* rail overlay */}
+				{/* rail overlay — fill tip sits exactly on the playhead */}
 				<div className='pointer-events-none absolute left-0 top-0 bottom-0 z-0 w-10 sm:w-12'>
-					<span className='absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-line' />
+					<span className='absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-line' />
 					<span
-						className='absolute left-1/2 top-2 w-[2px] -translate-x-1/2 rounded-full bg-rose'
-						style={{
-							height: `max(0px, calc(${fillRatio * 100}% - 1rem))`,
-						}}
+						className='absolute left-1/2 top-0 w-[2px] -translate-x-1/2 bg-rose'
+						style={{ height: `${fillPx}px` }}
 					/>
 				</div>
 
@@ -92,7 +89,7 @@ const Timeline = () => {
 									className='relative z-10 flex justify-center pt-1.5'
 								>
 									<span
-										className={`grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-full bg-bg transition-[color,transform] duration-100 ${
+										className={`grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-full bg-bg transition-transform duration-200 ${
 											reached
 												? 'text-rose'
 												: 'text-inkFaint scale-90'

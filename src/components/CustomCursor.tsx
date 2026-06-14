@@ -1,23 +1,28 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * A quirky two-part cursor: a small dot that tracks instantly and a ring that
  * lags behind with easing and swells over interactive elements. Pointer-fine
- * devices only — touch keeps the native cursor (and we never hide it there).
+ * devices only — on touch we render nothing and keep the native cursor.
  */
 const CustomCursor = () => {
 	const dotRef = useRef<HTMLDivElement>(null);
 	const ringRef = useRef<HTMLDivElement>(null);
+	const [enabled, setEnabled] = useState(false);
+
+	// detect a real mouse first; only then render + wire up the cursor
+	useEffect(() => {
+		if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+			document.documentElement.classList.add('cursor-ready');
+			setEnabled(true);
+		}
+	}, []);
 
 	useEffect(() => {
-		const finePointer = window.matchMedia(
-			'(hover: hover) and (pointer: fine)'
-		).matches;
-		if (finePointer) document.documentElement.classList.add('cursor-ready');
-		if (!finePointer) return;
-
-		const dot = dotRef.current!;
-		const ring = ringRef.current!;
+		if (!enabled) return;
+		const dot = dotRef.current;
+		const ring = ringRef.current;
+		if (!dot || !ring) return;
 		let mouseX = window.innerWidth / 2;
 		let mouseY = window.innerHeight / 2;
 		let ringX = mouseX;
@@ -68,7 +73,9 @@ const CustomCursor = () => {
 			document.removeEventListener('mouseenter', onEnter);
 			document.documentElement.classList.remove('cursor-ready');
 		};
-	}, []);
+	}, [enabled]);
+
+	if (!enabled) return null;
 
 	return (
 		<>

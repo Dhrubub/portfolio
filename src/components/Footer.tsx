@@ -79,6 +79,7 @@ const Footer = () => {
 						built with React, Tailwind &amp; a bit of{' '}
 						<span className='text-rose'>over-engineering</span> ✦
 					</span>
+					<span>last updated {profile.lastUpdated}</span>
 					<span>© {profile.name} · {profile.location}</span>
 				</div>
 			</div>

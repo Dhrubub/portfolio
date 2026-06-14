@@ -48,6 +48,7 @@ export const profile = {
 	bio: 'Recently graduated with a Master of Professional Engineering (Software) with Distinction from UWA, and now a Frontend Engineer at Canva on the Accessibility team. I like building things that are calm to use and quietly over-engineered — and making the web work for everyone.',
 	email: 'dhruvjobanputra8@gmail.com',
 	resumeLabel: 'Résumé',
+	lastUpdated: 'June 2026',
 };
 
 export const socials = [

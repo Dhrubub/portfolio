@@ -87,7 +87,7 @@ const Hero = () => {
 	return (
 		<section
 			id='home'
-			className='relative min-h-[88vh] flex items-center px-6 sm:px-10 pt-10 pb-16'
+			className='relative mx-auto flex min-h-[88vh] max-w-7xl items-center px-6 pt-10 pb-16 sm:px-10'
 		>
 			<motion.div
 				variants={container}

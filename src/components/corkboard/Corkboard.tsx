@@ -522,6 +522,13 @@ const Corkboard = ({ onTidy }: Props) => {
 				</div>
 			</div>
 
+			{/* last-updated tab */}
+			<div className='pointer-events-none absolute bottom-9 left-9 z-[35]'>
+				<div className='-rotate-1 rounded-[4px] border border-black/5 bg-[#f4eedf] px-3 py-1.5 font-mono text-[11px] text-[#8a7656] shadow-[0_4px_10px_rgba(0,0,0,0.3)]'>
+					updated {profile.lastUpdated}
+				</div>
+			</div>
+
 			{/* hint — a small paper note */}
 			<div className='pointer-events-none absolute bottom-9 left-1/2 z-[35] -translate-x-1/2'>
 				<div className='flex -rotate-1 items-center gap-2 rounded-[4px] border border-black/5 bg-[#f4eedf] px-4 py-2 font-mono text-[11px] text-[#5b4a30] shadow-[0_5px_12px_rgba(0,0,0,0.3)]'>
