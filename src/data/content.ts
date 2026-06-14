@@ -50,7 +50,7 @@ export const profile = {
 	timezone: 'Australia/Perth',
 	status: 'Software Engineer @ Canva',
 	nowBuilding: 'this very website 👀',
-	bio: "I'm a Software Engineer at Canva. I joined as a graduate after a Master of Professional Engineering (Software) with Distinction at UWA, and I love versatile, full-stack problem solving: building services, turning complex systems into things that just work, and finding ways to use AI to build better and faster.",
+	bio: "I'm a Software Engineer at Canva. I joined as a graduate after a Master of Professional Engineering (Software) with Distinction at UWA. I love versatile, full-stack problem solving, building services, making complex things simple, and finding ways to use AI to build better and faster.",
 	email: 'dhruvjobanputra8@gmail.com',
 	resumeLabel: 'Résumé',
 	lastUpdated: 'June 2026',

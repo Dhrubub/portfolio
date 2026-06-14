@@ -148,9 +148,6 @@ const Hero = () => {
 								🕑 {time} in Perth
 							</span>
 						)}
-						<span className='inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-inkSoft'>
-							🔨 building {profile.nowBuilding}
-						</span>
 					</motion.div>
 
 					{/* actions */}

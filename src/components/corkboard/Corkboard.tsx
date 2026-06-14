@@ -809,11 +809,16 @@ const BoardNode = ({
 				</p>
 				<div className='mt-3 flex flex-wrap gap-1.5 font-mono text-[11px]'>
 					<span className='inline-flex items-center gap-1.5 rounded-full border border-line px-2 py-1 text-inkSoft'>
-						<span className='h-1.5 w-1.5 rounded-full bg-jade' />
+						<span className='grid h-3 w-3 place-items-center'>
+							<span className='h-1.5 w-1.5 rounded-full bg-jade' />
+						</span>
 						{profile.status}
 					</span>
-					<span className='rounded-full border border-line px-2 py-1 text-inkSoft'>
-						📍 {profile.location}
+					<span className='inline-flex items-center gap-1.5 rounded-full border border-line px-2 py-1 text-inkSoft'>
+						<span className='grid h-3 w-3 place-items-center text-[10px] leading-none'>
+							📍
+						</span>
+						{profile.location}
 					</span>
 				</div>
 			</div>

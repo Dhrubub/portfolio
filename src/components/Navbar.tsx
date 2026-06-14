@@ -75,7 +75,7 @@ const Navbar = () => {
 						data-cursor='hover'
 						className='hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-inkSoft transition-colors hover:border-rose hover:text-rose sm:flex'
 					>
-						🧷 <span>board</span>
+						📌 <span>board</span>
 					</button>
 
 					{/* command palette trigger */}
@@ -83,9 +83,9 @@ const Navbar = () => {
 						onClick={openPalette}
 						data-cursor='hover'
 						aria-label='Open command palette'
-						className='hidden items-center gap-2 rounded-lg border border-line bg-surface px-2.5 py-1.5 text-inkFaint transition-colors hover:border-rose hover:text-rose sm:flex'
+						className='hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-inkSoft transition-colors hover:border-rose hover:text-rose sm:flex'
 					>
-						<span className='font-mono text-xs'>⌘K</span>
+						<span className='font-mono text-sm'>⌘K</span>
 					</button>
 
 					{/* theme toggle */}

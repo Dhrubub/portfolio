@@ -71,7 +71,7 @@ const Skills = () => {
 					</motion.p>
 				) : (
 					<p className='text-inkFaint'>
-						hover a skill to see where it shows up ↑ in my timeline
+						hover a skill to see where it shows up in my timeline
 						&amp; projects
 					</p>
 				)}

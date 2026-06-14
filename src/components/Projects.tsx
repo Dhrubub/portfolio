@@ -5,9 +5,6 @@ import SectionHeading from './SectionHeading';
 import { projects } from '../data/content';
 import { useHighlight } from '../context/HighlightContext';
 
-// a little playful rotation per card so the grid feels hand-placed
-const tilts = ['-rotate-1', 'rotate-1', 'rotate-1', '-rotate-1'];
-
 const Projects = () => {
 	const { activeSkill } = useHighlight();
 
@@ -26,7 +23,7 @@ const Projects = () => {
 			</p>
 
 			<div className='grid gap-6 sm:grid-cols-2'>
-				{projects.map((p, i) => {
+				{projects.map((p) => {
 					const dimmed =
 						!!activeSkill && !p.tech.includes(activeSkill);
 					const lit = !!activeSkill && p.tech.includes(activeSkill);
@@ -37,9 +34,7 @@ const Projects = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 							data-cursor='hover'
-							className={`group relative block overflow-hidden rounded-2xl border bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 hover:rotate-0 ${
-								tilts[i % tilts.length]
-							} ${
+							className={`group relative block overflow-hidden rounded-2xl border bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 ${
 								lit
 									? 'border-rose ring-2 ring-rose/30'
 									: 'border-line'

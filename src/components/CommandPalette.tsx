@@ -18,7 +18,7 @@ import {
 	faMoon,
 	faSun,
 	faCircleUp,
-	faHandSpock,
+	faDrum,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -30,9 +30,39 @@ interface Cmd {
 	label: string;
 	hint?: string;
 	icon: IconDefinition;
+	/** custom SVG icon, rendered instead of the FontAwesome one */
+	svg?: ReactNode;
 	keywords?: string;
 	run: () => void;
 }
+
+// little hand-drawn barrel mid-roll (for "do a barrel roll")
+const BarrelIcon = () => (
+	<svg
+		viewBox='0 0 24 24'
+		className='h-4 w-4'
+		fill='none'
+		stroke='currentColor'
+		strokeWidth={1.6}
+		strokeLinecap='round'
+		strokeLinejoin='round'
+		aria-hidden
+	>
+		{/* the barrel, tilted as if rolling */}
+		<g transform='rotate(14 11 12)'>
+			<ellipse cx='13' cy='6' rx='4.4' ry='1.4' />
+			<path d='M8.6 6C7.4 9.5 7.4 14.5 8.6 18' />
+			<path d='M17.4 6C18.6 9.5 18.6 14.5 17.4 18' />
+			<path d='M8.6 18C10.3 19.2 15.7 19.2 17.4 18' />
+			<path d='M7.7 10.5C10 11.3 16 11.3 18.3 10.5' />
+			<path d='M7.7 13.8C10 14.6 16 14.6 18.3 13.8' />
+		</g>
+		{/* motion lines trailing behind */}
+		<path d='M1.6 9C2.5 8.6 3.5 8.6 4.4 9' opacity='0.7' />
+		<path d='M1 12.2C2.1 11.7 3.5 11.7 4.6 12.2' opacity='0.55' />
+		<path d='M1.6 15.4C2.5 15 3.5 15 4.4 15.4' opacity='0.7' />
+	</svg>
+);
 
 const jump = (id: string) =>
 	document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -105,7 +135,8 @@ const CommandPalette = () => {
 				id: 'barrelroll',
 				label: 'Do a barrel roll',
 				hint: 'why not',
-				icon: faHandSpock,
+				icon: faDrum,
+				svg: <BarrelIcon />,
 				keywords: 'fun spin easter egg',
 				run: () => {
 					const el = document.getElementById('root');
@@ -234,7 +265,12 @@ const CommandPalette = () => {
 													: 'border-line text-inkFaint'
 											}`}
 										>
-											<FontAwesomeIcon icon={c.icon} className='text-sm' />
+											{c.svg ?? (
+												<FontAwesomeIcon
+													icon={c.icon}
+													className='text-sm'
+												/>
+											)}
 										</span>
 										<span className='flex-1 text-sm font-medium'>
 											{c.label}

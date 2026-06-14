@@ -12,7 +12,14 @@ const Experience = () => (
 			title='Experience'
 		/>
 		<p className='mb-8 -mt-4 max-w-lg font-mono text-xs text-inkFaint'>
-			tip: hover a skill below to light up where I used it.
+			tip: hover a{' '}
+			<a
+				href='#skills'
+				className='text-rose underline decoration-dotted underline-offset-2 hover:decoration-solid'
+			>
+				skill
+			</a>{' '}
+			below to light up where I used it.
 		</p>
 		<Timeline />
 	</section>
