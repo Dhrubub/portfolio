@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import {
+	faPlus,
+	faMinus,
+	faArrowUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons';
 import { experience, ExpKind } from '../data/content';
 import { useRafScroll } from '../hooks/useScroll';
 import { useHighlight } from '../context/HighlightContext';
+import { RichText } from './RichText';
 
 const INITIAL = 6;
 const THRESHOLD = 0.58; // fraction of viewport height where the playhead sits
@@ -104,13 +109,13 @@ const Timeline = () => {
 
 								{/* card */}
 								<div
-									className={`transition-opacity duration-300 ${
+									className={`group transition-opacity duration-300 ${
 										dimmed ? 'opacity-40' : 'opacity-100'
 									}`}
 								>
 									<div
 										data-cursor='hover'
-										className={`rounded-2xl border bg-surface p-4 sm:p-5 shadow-card transition-all duration-300 hover:-translate-y-0.5 ${
+										className={`transform-gpu rounded-2xl border bg-surface p-4 sm:p-5 shadow-card transition-transform duration-300 group-hover:-translate-y-0.5 ${
 											lit
 												? 'border-rose ring-2 ring-rose/30'
 												: 'border-line'
@@ -130,7 +135,22 @@ const Timeline = () => {
 											)}
 										</div>
 										<h3 className='mt-1.5 font-display text-base font-semibold leading-snug text-ink sm:text-lg'>
-											{item.org}
+											{item.link ? (
+												<a
+													href={item.link}
+													target='_blank'
+													rel='noopener noreferrer'
+													className='hover:text-rose'
+												>
+													{item.org}
+													<FontAwesomeIcon
+														icon={faArrowUpRightFromSquare}
+														className='ml-1 text-[0.6em] align-middle text-inkFaint'
+													/>
+												</a>
+											) : (
+												item.org
+											)}
 											<span className='font-body font-normal text-inkSoft'>
 												{'  ·  '}
 												{item.role}
@@ -144,7 +164,9 @@ const Timeline = () => {
 														className='flex gap-2 text-sm leading-relaxed text-inkSoft'
 													>
 														<span className='mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-rose/60' />
-														<span>{d}</span>
+														<span>
+															<RichText>{d}</RichText>
+														</span>
 													</li>
 												))}
 											</ul>

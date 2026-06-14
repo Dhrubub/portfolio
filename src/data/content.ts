@@ -139,6 +139,8 @@ export interface ExperienceItem {
 	/** skill ids used here –powers the interactive skills highlight */
 	tech: string[];
 	current?: boolean;
+	/** optional external link for the org */
+	link?: string;
 }
 
 const iconFor = (kind: ExpKind): IconDefinition =>
@@ -182,7 +184,7 @@ export const experience: ExperienceItem[] = [
 		year: 2023,
 		kind: 'education',
 		tech: [],
-		description: ['WAM 82.36%', 'GPA 6.73 / 7'],
+		description: [],
 	}),
 	make({
 		id: 'canva-intern',
@@ -221,20 +223,19 @@ export const experience: ExperienceItem[] = [
 		kind: 'work',
 		tech: ['python', 'jupyter'],
 		description: [
-			'Published a literature review at EUVIP 2023 on diagnosing ear disease from otoscopic images with deep learning.',
+			'[Published](https://doi.org/10.1109/EUVIP58404.2023.10323057) a literature review at EUVIP 2023 on diagnosing ear disease from otoscopic images with deep learning.',
 			'Built a deep-learning model in Python & Keras to classify ear diseases.',
 		],
 	}),
 	make({
 		id: 'honours',
 		org: 'UWA',
-		role: 'BSc, First Class Honours (Software Eng & CS)',
+		role: 'BSc, First Class Honours (Software Engineering & Computer Science)',
 		date: 'Feb 2022 – Nov 2022',
 		year: 2022,
 		kind: 'education',
 		tech: ['python'],
 		description: [
-			'WAM 82.13% · GPA 6.40 / 7',
 			'Thesis: using deep learning to diagnose ear diseases from otoscopic images.',
 		],
 	}),
@@ -262,7 +263,7 @@ export const experience: ExperienceItem[] = [
 		kind: 'work',
 		tech: ['react', 'ts', 'java', 'android'],
 		description: [
-			'Reworked the Soar.Earth UI in React, Redux & TypeScript, part of a 10× jump in registrations to 50,000.',
+			'Reworked the [Soar.Earth](https://soaratlas.com/discover) UI in React, Redux & TypeScript, part of a 10× jump in registrations to 50,000.',
 			'Automated testing with React Testing Library & Cypress.',
 			'Shipped features, fixed bugs and ran QA under Agile.',
 			'Modernised legacy code with Java & Android Studio.',
@@ -289,7 +290,7 @@ export const experience: ExperienceItem[] = [
 		year: 2019,
 		kind: 'education',
 		tech: [],
-		description: ['WAM 80.50% · GPA 6.50 / 7'],
+		description: [],
 	}),
 	make({
 		id: 'school',

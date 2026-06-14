@@ -17,6 +17,8 @@ import {
 	faMoon,
 	faHand,
 	faEnvelope,
+	faArrowUpRightFromSquare,
+	faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -28,6 +30,7 @@ import {
 } from '../../data/content';
 import { useTheme } from '../../theme/ThemeContext';
 import { useHighlight } from '../../context/HighlightContext';
+import { RichText } from '../RichText';
 import { buildItems, BOARD_W, BOARD_H, BoardItem } from './layout';
 import avatar from '../../assets/avatar.jpg';
 
@@ -564,7 +567,15 @@ const Corkboard = ({ onTidy }: Props) => {
 							onPointerDown={(e) => e.stopPropagation()}
 							className='relative w-full max-w-lg rounded-2xl border border-lineStrong bg-surface p-6 shadow-card'
 						>
-							<div className='flex flex-wrap items-center gap-2'>
+							<button
+								onClick={() => setFocus(null)}
+								data-cursor='hover'
+								aria-label='Close'
+								className='absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full text-inkFaint transition-colors hover:bg-line hover:text-ink'
+							>
+								<FontAwesomeIcon icon={faXmark} />
+							</button>
+							<div className='flex flex-wrap items-center gap-2 pr-8'>
 								<span className='font-mono text-xs text-rose'>
 									{focusExp.date}
 								</span>
@@ -575,7 +586,22 @@ const Corkboard = ({ onTidy }: Props) => {
 								)}
 							</div>
 							<h3 className='mt-1.5 font-display text-xl font-bold text-ink'>
-								{focusExp.org}
+								{focusExp.link ? (
+									<a
+										href={focusExp.link}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='hover:text-rose'
+									>
+										{focusExp.org}
+										<FontAwesomeIcon
+											icon={faArrowUpRightFromSquare}
+											className='ml-1 align-middle text-[0.55em] text-inkFaint'
+										/>
+									</a>
+								) : (
+									focusExp.org
+								)}
 							</h3>
 							<p className='text-inkSoft'>{focusExp.role}</p>
 							{focusExp.description.length > 0 && (
@@ -586,7 +612,9 @@ const Corkboard = ({ onTidy }: Props) => {
 											className='flex gap-2 text-sm leading-relaxed text-inkSoft'
 										>
 											<span className='mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-rose' />
-											{d}
+											<span>
+												<RichText>{d}</RichText>
+											</span>
 										</li>
 									))}
 								</ul>
@@ -603,12 +631,6 @@ const Corkboard = ({ onTidy }: Props) => {
 									))}
 								</div>
 							)}
-							<button
-								onClick={() => setFocus(null)}
-								className='mt-5 rounded-lg border border-lineStrong px-4 py-2 text-sm text-ink transition-colors hover:border-rose hover:text-rose'
-							>
-								close
-							</button>
 						</motion.div>
 					</motion.div>
 				)}
