@@ -46,8 +46,16 @@ type Gesture =
 			vx: number;
 			vy: number;
 			lt: number;
+			/** members dragged together with this one (sheet + label) */
+			group?: { id: string; ox: number; oy: number }[];
+			/** clamp box (board coords) for items confined to a region */
+			bounds?: { minX: number; minY: number; maxX: number; maxY: number };
 	  }
 	| null;
+
+// the skills sheet + its stickers move as one unit (the "skills" label stays put)
+const inSheetGroup = (id: string) =>
+	id === 'skillboard' || id.startsWith('skill-');
 
 const ZOOM_MIN = 0.45;
 const ZOOM_MAX = 1.5;
@@ -80,6 +88,7 @@ const Corkboard = ({ onTidy }: Props) => {
 	const inertia = useRef<number>(0);
 	const zoomRef = useRef(zoom);
 	const panRef = useRef(pan);
+	const fitZoomRef = useRef(0); // smallest allowed zoom = whole board fits
 	useEffect(() => {
 		zoomRef.current = zoom;
 	}, [zoom]);
@@ -117,7 +126,8 @@ const Corkboard = ({ onTidy }: Props) => {
 	// ---- zoom helpers (zoom toward a screen point) ----
 	const zoomAt = useCallback((factor: number, sx: number, sy: number) => {
 		const z = zoomRef.current;
-		const nz = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, z * factor));
+		const lo = fitZoomRef.current || ZOOM_MIN;
+		const nz = Math.min(ZOOM_MAX, Math.max(lo, z * factor));
 		const change = nz / z;
 		const p = panRef.current;
 		setZoom(nz);
@@ -139,6 +149,7 @@ const Corkboard = ({ onTidy }: Props) => {
 			(r.width - PAD * 2) / BOARD_W,
 			(r.height - PAD * 2) / BOARD_H
 		);
+		fitZoomRef.current = z;
 		setZoom(z);
 		setPan({ x: (r.width - BOARD_W * z) / 2, y: (r.height - BOARD_H * z) / 2 });
 	}, []);
@@ -189,10 +200,26 @@ const Corkboard = ({ onTidy }: Props) => {
 				g.vy = (((e.movementY || 0) / z) / dt) * 16;
 				g.lt = now;
 				g.moved += Math.abs(e.movementX) + Math.abs(e.movementY);
-				setPos((p) => ({
-					...p,
-					[g.id]: { ...p[g.id], x: g.ox + dx, y: g.oy + dy },
-				}));
+				if (g.group) {
+					const members = g.group;
+					setPos((p) => {
+						const np = { ...p };
+						for (const m of members)
+							np[m.id] = { ...p[m.id], x: m.ox + dx, y: m.oy + dy };
+						return np;
+					});
+				} else {
+					let nx = g.ox + dx;
+					let ny = g.oy + dy;
+					if (g.bounds) {
+						nx = Math.min(g.bounds.maxX, Math.max(g.bounds.minX, nx));
+						ny = Math.min(g.bounds.maxY, Math.max(g.bounds.minY, ny));
+					}
+					setPos((p) => ({
+						...p,
+						[g.id]: { ...p[g.id], x: nx, y: ny },
+					}));
+				}
 			}
 		};
 		const onUp = () => {
@@ -202,23 +229,24 @@ const Corkboard = ({ onTidy }: Props) => {
 			if (g && g.kind === 'item') {
 				if (g.moved < 6) {
 					handleItemClick(g.id);
-				} else if (Math.abs(g.vx) + Math.abs(g.vy) > 0.4) {
+				} else if (
+					!g.bounds &&
+					Math.abs(g.vx) + Math.abs(g.vy) > 0.4
+				) {
 					// toss with inertia
 					let vx = Math.max(-40, Math.min(40, g.vx));
 					let vy = Math.max(-40, Math.min(40, g.vy));
-					const id = g.id;
+					const ids = g.group ? g.group.map((m) => m.id) : [g.id];
 					cancelAnimationFrame(inertia.current);
 					const step = () => {
 						vx *= 0.9;
 						vy *= 0.9;
-						setPos((p) => ({
-							...p,
-							[id]: {
-								...p[id],
-								x: p[id].x + vx,
-								y: p[id].y + vy,
-							},
-						}));
+						setPos((p) => {
+							const np = { ...p };
+							for (const id of ids)
+								np[id] = { ...p[id], x: p[id].x + vx, y: p[id].y + vy };
+							return np;
+						});
 						if (Math.abs(vx) + Math.abs(vy) > 0.15)
 							inertia.current = requestAnimationFrame(step);
 					};
@@ -252,6 +280,36 @@ const Corkboard = ({ onTidy }: Props) => {
 		e.stopPropagation();
 		cancelAnimationFrame(inertia.current);
 		bringToFront(id);
+		// dragging the skills sheet moves the sheet + its label together
+		const group =
+			id === 'skillboard'
+				? items
+						.filter((it) => inSheetGroup(it.id))
+						.map((it) => ({
+							id: it.id,
+							ox: pos[it.id].x,
+							oy: pos[it.id].y,
+						}))
+				: undefined;
+		// skill stickers are confined to the graph-paper sheet
+		let clampBounds:
+			| { minX: number; minY: number; maxX: number; maxY: number }
+			| undefined;
+		if (id.startsWith('skill-')) {
+			const sb = pos['skillboard'];
+			const sbItem = items.find((it) => it.id === 'skillboard');
+			const sw = sbItem && 'w' in sbItem ? sbItem.w : 480;
+			const sh = sbItem && 'h' in sbItem ? sbItem.h : 380;
+			const pad = 14;
+			const stW = 112;
+			const stH = 44;
+			clampBounds = {
+				minX: sb.x + pad,
+				minY: sb.y + pad + 8,
+				maxX: sb.x + sw - stW - pad,
+				maxY: sb.y + sh - stH - pad,
+			};
+		}
 		gesture.current = {
 			kind: 'item',
 			id,
@@ -263,6 +321,8 @@ const Corkboard = ({ onTidy }: Props) => {
 			vx: 0,
 			vy: 0,
 			lt: e.timeStamp,
+			group,
+			bounds: clampBounds,
 		};
 	};
 

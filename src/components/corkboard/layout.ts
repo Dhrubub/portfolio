@@ -60,8 +60,8 @@ export type BoardItem =
 const jit = (i: number, range: number) => ((i * 53) % (range * 2)) - range;
 const rotOf = (i: number) => (((i * 37) % 9) - 4) * 0.9;
 
-export const BOARD_W = 1980;
-export const BOARD_H = 1480;
+export const BOARD_W = 2160;
+export const BOARD_H = 1640;
 
 const grid = (
 	startX: number,
@@ -168,5 +168,7 @@ export const buildItems = (): BoardItem[] => {
 		})
 	);
 
-	return items;
+	// nudge everything inward so there's comfortable cork margin inside the frame
+	const OFFSET = 70;
+	return items.map((it) => ({ ...it, x: it.x + OFFSET, y: it.y + OFFSET }));
 };
