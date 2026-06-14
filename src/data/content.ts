@@ -75,6 +75,8 @@ export interface Skill {
 	iconDark?: string;
 	/** family for grouping */
 	group: 'languages' | 'frameworks' | 'tools';
+	/** used across the board — readout says "everywhere", and it never dims things */
+	everywhere?: boolean;
 }
 
 export const skills: Skill[] = [
@@ -95,7 +97,7 @@ export const skills: Skill[] = [
 		iconDark: dark_django,
 		group: 'frameworks',
 	},
-	{ id: 'git', label: 'Git', icon: git, group: 'tools' },
+	{ id: 'git', label: 'Git', icon: git, group: 'tools', everywhere: true },
 	{ id: 'android', label: 'Android', icon: android, group: 'tools' },
 	{
 		id: 'unity',
@@ -163,7 +165,7 @@ export const experience: ExperienceItem[] = [
 		year: 2026,
 		kind: 'work',
 		current: true,
-		tech: ['java', 'ts'],
+		tech: ['java', 'ts', 'react'],
 		description: [],
 	}),
 	make({
@@ -183,7 +185,7 @@ export const experience: ExperienceItem[] = [
 		date: 'Feb 2023 – Dec 2024',
 		year: 2023,
 		kind: 'education',
-		tech: [],
+		tech: ['aws', 'latex', 'r', 'ros', 'cpp', 'python'],
 		description: [],
 	}),
 	make({
@@ -221,7 +223,7 @@ export const experience: ExperienceItem[] = [
 		date: 'Nov 2022 – Sep 2023',
 		year: 2022.8,
 		kind: 'work',
-		tech: ['python', 'jupyter'],
+		tech: ['python', 'jupyter', 'latex'],
 		description: [
 			'[Published](https://doi.org/10.1109/EUVIP58404.2023.10323057) a literature review at EUVIP 2023 on diagnosing ear disease from otoscopic images with deep learning.',
 			'Built a deep-learning model in Python & Keras to classify ear diseases.',
@@ -234,7 +236,7 @@ export const experience: ExperienceItem[] = [
 		date: 'Feb 2022 – Nov 2022',
 		year: 2022,
 		kind: 'education',
-		tech: ['python'],
+		tech: ['python', 'latex'],
 		description: [
 			'Thesis: using deep learning to diagnose ear diseases from otoscopic images.',
 		],
@@ -328,7 +330,7 @@ export const projects: Project[] = [
 		blurb: 'A full-stack web app for learning Python, interactively.',
 		image: PythonPerfect,
 		stack: ['Python', 'Flask', 'SQLite'],
-		tech: ['python', 'html'],
+		tech: ['python', 'html', 'js'],
 		github: 'https://github.com/Dhrubub/PythonPerfect',
 	},
 	{

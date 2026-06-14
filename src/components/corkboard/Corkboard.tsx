@@ -741,14 +741,19 @@ const BoardNode = ({
 	const base =
 		'absolute touch-none active:cursor-grabbing transition-shadow';
 	// when a skill is hovered, dim the whole board except where that skill was used
+	// (an "everywhere" skill like Git only highlights itself and dims nothing else)
+	const activeEverywhere =
+		!!activeSkill && !!skillById[activeSkill]?.everywhere;
 	const matched = !activeSkill
+		? true
+		: item.type === 'skill'
+		? item.refId === activeSkill
+		: activeEverywhere
 		? true
 		: item.type === 'exp'
 		? !!expById[item.refId]?.tech.includes(activeSkill)
 		: item.type === 'project'
 		? !!projById[item.refId]?.tech.includes(activeSkill)
-		: item.type === 'skill'
-		? item.refId === activeSkill
 		: false;
 	const style: React.CSSProperties = {
 		left: pos.x,

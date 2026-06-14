@@ -2,11 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import SectionHeading from './SectionHeading';
-import { projects } from '../data/content';
+import { projects, skills } from '../data/content';
 import { useHighlight } from '../context/HighlightContext';
 
 const Projects = () => {
 	const { activeSkill } = useHighlight();
+	const activeEverywhere =
+		!!activeSkill && !!skills.find((s) => s.id === activeSkill)?.everywhere;
 
 	return (
 		<section
@@ -25,7 +27,9 @@ const Projects = () => {
 			<div className='grid gap-6 sm:grid-cols-2'>
 				{projects.map((p) => {
 					const dimmed =
-						!!activeSkill && !p.tech.includes(activeSkill);
+						!!activeSkill &&
+						!activeEverywhere &&
+						!p.tech.includes(activeSkill);
 					const lit = !!activeSkill && p.tech.includes(activeSkill);
 					return (
 						<a

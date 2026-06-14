@@ -6,7 +6,7 @@ import {
 	faMinus,
 	faArrowUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import { experience, ExpKind } from '../data/content';
+import { experience, ExpKind, skills } from '../data/content';
 import { useRafScroll } from '../hooks/useScroll';
 import { useHighlight } from '../context/HighlightContext';
 import { RichText } from './RichText';
@@ -23,6 +23,8 @@ const kindLabel: Record<ExpKind, string> = {
 const Timeline = () => {
 	const reduce = useReducedMotion();
 	const { activeSkill } = useHighlight();
+	const activeEverywhere =
+		!!activeSkill && !!skills.find((s) => s.id === activeSkill)?.everywhere;
 	const [expanded, setExpanded] = useState(false);
 	const visible = expanded ? experience : experience.slice(0, INITIAL);
 
@@ -76,7 +78,9 @@ const Timeline = () => {
 						const reached =
 							reachedArr[i] ?? false;
 						const dimmed =
-							!!activeSkill && !item.tech.includes(activeSkill);
+							!!activeSkill &&
+							!activeEverywhere &&
+							!item.tech.includes(activeSkill);
 						const lit =
 							!!activeSkill && item.tech.includes(activeSkill);
 						return (

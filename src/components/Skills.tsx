@@ -56,7 +56,11 @@ const Skills = () => {
 						className='text-inkSoft'
 					>
 						<span className='text-rose'>{active.label}</span>
-						{usedOrgs.length || usedProjects.length ? (
+						{active.everywhere ? (
+							<>
+								{' '}· used <span className='text-ink'>everywhere</span>
+							</>
+						) : usedOrgs.length || usedProjects.length ? (
 							<>
 								{' '}· used at{' '}
 								<span className='text-ink'>
