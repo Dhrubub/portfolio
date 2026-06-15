@@ -64,8 +64,17 @@ const BarrelIcon = () => (
 	</svg>
 );
 
-const jump = (id: string) =>
-	document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+// jump to a section. on the board (where the section isn't mounted) switch to
+// tidy view first, then scroll once it renders.
+const jump = (id: string) => {
+	const el = document.getElementById(id);
+	if (el) return el.scrollIntoView({ behavior: 'smooth' });
+	window.dispatchEvent(new CustomEvent('dj:set-view', { detail: 'tidy' }));
+	setTimeout(
+		() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }),
+		90
+	);
+};
 
 const CommandPalette = () => {
 	const [open, setOpen] = useState(false);
@@ -139,14 +148,27 @@ const CommandPalette = () => {
 				svg: <BarrelIcon />,
 				keywords: 'fun spin easter egg',
 				run: () => {
-					const el = document.getElementById('root');
-					if (!el) return;
-					el.style.transition = 'transform 1s ease';
-					el.style.transform = 'rotate(360deg)';
-					window.setTimeout(() => {
-						el.style.transition = '';
-						el.style.transform = '';
-					}, 1000);
+					const spin = [
+						{ transform: 'rotate(0deg)' },
+						{ transform: 'rotate(360deg)' },
+					];
+					const cards = document.querySelectorAll('.board-item');
+					if (cards.length) {
+						// on the board: every pinned card does its own roll, in a wave
+						cards.forEach((c, i) =>
+							c.animate(spin, {
+								duration: 800,
+								delay: i * 18,
+								easing: 'ease-in-out',
+								composite: 'add', // spin on top of each card's tilt
+							})
+						);
+					} else {
+						// tidy view: classic whole-page barrel roll
+						document
+							.getElementById('root')
+							?.animate(spin, { duration: 900, easing: 'ease-in-out' });
+					}
 				},
 			},
 		];

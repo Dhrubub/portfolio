@@ -739,7 +739,7 @@ const BoardNode = ({
 	onSkillHover: (id: string | null) => void;
 }) => {
 	const base =
-		'absolute touch-none active:cursor-grabbing transition-shadow';
+		'board-item absolute touch-none active:cursor-grabbing transition-shadow';
 	// when a skill is hovered, dim the whole board except where that skill was used
 	// (an "everywhere" skill like Git only highlights itself and dims nothing else)
 	const activeEverywhere =
