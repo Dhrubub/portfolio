@@ -1,108 +1,113 @@
-import { useEffect, useState } from 'react';
-import styles from './style';
+import { useCallback, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import {
 	Navbar,
 	Hero,
 	Experience,
-	Footer,
 	Projects,
 	Skills,
+	Footer,
+	CommandPalette,
+	CustomCursor,
+	ScrollProgress,
+	ScrollToTop,
+	Confetti,
 } from './components';
-import { Helmet } from 'react-helmet';
+import Corkboard from './components/corkboard/Corkboard';
+import { HighlightProvider } from './context/HighlightContext';
+import { useTheme } from './theme/ThemeContext';
 import darkLogo from './assets/dark-logo.png';
 import lightLogo from './assets/light-logo.png';
 import darkLogoSquare from './assets/dark-logo-square.png';
 import lightLogoSquare from './assets/light-logo-square.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import ScrollToTop from './components/ScrollToTop';
-import WIPBanner from './components/WIPBanner';
-import Experiment from './components/Experiment';
+
+type View = 'board' | 'tidy';
+const VIEW_KEY = 'dj-view';
+
+const getInitialView = (): View => {
+	if (typeof window === 'undefined') return 'tidy';
+	const q = new URLSearchParams(window.location.search).get('view');
+	if (q === 'board' || q === 'tidy') return q;
+	const saved = window.localStorage.getItem(VIEW_KEY);
+	if (saved === 'board' || saved === 'tidy') return saved;
+	const desktopPointer =
+		window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+		window.innerWidth >= 768;
+	return desktopPointer ? 'board' : 'tidy';
+};
 
 const Home = () => {
-	const [darkMode, setDarkMode] = useState(
-		window.matchMedia('(prefers-color-scheme: dark)').matches
-	);
+	const { theme } = useTheme();
+	const dark = theme === 'dark';
+	const [view, setViewState] = useState<View>(getInitialView);
 
-	useEffect(() => {
-		const htmlElement = document.documentElement;
-		if (darkMode) {
-			htmlElement.setAttribute('data-theme', 'dark');
-		} else {
-			htmlElement.removeAttribute('data-theme');
-		}
-	}, [darkMode]);
-
-	useEffect(() => {
-		const matchMediaDark = window.matchMedia(
-			'(prefers-color-scheme: dark)'
-		);
-
-		const handleChange = (event) => {
-			setDarkMode(event.matches);
-		};
-
-		setDarkMode(matchMediaDark.matches);
-		matchMediaDark.addEventListener('change', handleChange);
-
-		return () => {
-			matchMediaDark.removeEventListener('change', handleChange);
-		};
+	const setView = useCallback((v: View) => {
+		setViewState(v);
+		window.localStorage.setItem(VIEW_KEY, v);
+		window.scrollTo({ top: 0 });
 	}, []);
 
-	const toggleDarkMode = () => {
-		setDarkMode((prev) => !prev);
-	};
+	// view switching via custom events (navbar button + command palette)
+	useEffect(() => {
+		const onSet = (e: Event) => {
+			const detail = (e as CustomEvent).detail as View | 'toggle';
+			if (detail === 'toggle')
+				setView(view === 'board' ? 'tidy' : 'board');
+			else setView(detail);
+		};
+		window.addEventListener('dj:set-view', onSet as EventListener);
+		return () =>
+			window.removeEventListener('dj:set-view', onSet as EventListener);
+	}, [view, setView]);
+
+	useEffect(() => {
+		console.log(
+			'%c👋 hey, fellow tinkerer.',
+			'font-size:14px;font-weight:bold;color:#c16d83'
+		);
+		console.log(
+			'%cpsst, try the Konami code, hit ⌘K, or drag the board around.',
+			'font-family:monospace;color:#3f8c7e'
+		);
+	}, []);
 
 	return (
-		<div className='bg-primary w-full overflow-hidden scrollbar'>
+		<HighlightProvider>
 			<Helmet>
+				<title>Dhruv Jobanputra · Software Engineer</title>
 				<link
 					rel='icon'
-					type='image/svg+xml'
-					href={darkMode ? darkLogo : lightLogo}
+					type='image/png'
+					href={dark ? darkLogo : lightLogo}
 				/>
 				<link
 					rel='apple-touch-icon'
-					href={darkMode ? darkLogoSquare : lightLogoSquare}
+					href={dark ? darkLogoSquare : lightLogoSquare}
 				/>
-				<meta
-					property='og:image'
-					content={darkMode ? darkLogo : lightLogo}
-				/>
+				<meta property='og:image' content={dark ? darkLogo : lightLogo} />
 			</Helmet>
 
-			{/* <WIPBanner /> */}
-			<ScrollToTop />
+			<CustomCursor />
+			<CommandPalette />
+			<Confetti />
 
-			<div
-				className={`${styles.flexCenter} relative shadow sm:shadow-none`}
-			>
-				<div className={`${styles.boxWidth} sm:px-16 xl:pl-0 px-6`}>
-					<Navbar
-						isDarkMode={darkMode}
-						toggleDarkMode={() => toggleDarkMode()}
-					/>
-				</div>
-			</div>
-
-			<div className='sm:hidden w-full xs:pt-6 border-t-[1px] border-t-secondary opacity-50'></div>
-
-			<div className={`bg-primary ${styles.flexStart}`}>
-				<div className={`${styles.boxWidth}`}>
-					<Hero />
-					<Experience />
-					<Projects />
-					<Skills darkMode={darkMode} />
-				</div>
-			</div>
-
-			<div className={`bg-footer ${styles.flexStart}`}>
-				<div className={`w-full`}>
+			{view === 'board' ? (
+				<Corkboard onTidy={() => setView('tidy')} />
+			) : (
+				<>
+					<ScrollProgress />
+					<ScrollToTop />
+					<Navbar />
+					<main>
+						<Hero />
+						<Experience />
+						<Projects />
+						<Skills />
+					</main>
 					<Footer />
-				</div>
-			</div>
-		</div>
+				</>
+			)}
+		</HighlightProvider>
 	);
 };
 

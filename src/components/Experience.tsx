@@ -1,18 +1,28 @@
-import React from 'react';
-import TimeLine from './TimeLine';
+import SectionHeading from './SectionHeading';
+import Timeline from './Timeline';
 
-const Experience = () => {
-	return (
-		<section id='experience' className='my-6'>
-			<div className='w-fit m-auto my-3 sm:my-6 px-3'>
-				<h1 className='mb-1 px-4 font-semibold text-center text-tertiary text-[24px] sm:text-[48px]'>
-					Experience
-				</h1>
-				<div className='sm:w-[300px] w-full border-t-[1px] border-t-tertiary opacity-75'></div>
-			</div>
-			<TimeLine />
-		</section>
-	);
-};
+const Experience = () => (
+	<section
+		id='experience'
+		className='mx-auto max-w-5xl px-6 py-16 sm:px-10 sm:py-24 scroll-mt-20'
+	>
+		<SectionHeading
+			index='01'
+			kicker='// where I’ve been'
+			title='Experience'
+		/>
+		<p className='mb-8 -mt-4 max-w-lg font-mono text-xs text-inkFaint'>
+			tip: hover a{' '}
+			<a
+				href='#skills'
+				className='text-rose underline decoration-dotted underline-offset-2 hover:decoration-solid'
+			>
+				skill
+			</a>{' '}
+			below to light up where I used it.
+		</p>
+		<Timeline />
+	</section>
+);
 
 export default Experience;
